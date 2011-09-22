@@ -1,12 +1,15 @@
 
 /*!
  * Nodejs.bg
+ * Node.js Bulgarian User Group
+ * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
+ * Licensed under the MIT License.
  */
 
 /**
  * Module dependencies.
  */
-
+ 
 var express = require('express');
 var app = module.exports = express.createServer();
 
@@ -21,19 +24,18 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
-app.configure('production', function(){
-  app.use(express.errorHandler()); 
+app.configure('production', function() {
+  app.use(express.errorHandler());
 });
 
 // Routes
-
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Express'
+    title: 'Node.js България - Потребителска група'
   });
 });
 
