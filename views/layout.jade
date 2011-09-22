@@ -1,6 +1,13 @@
-!!!
+!!!5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='shortcut icon', type='image/x-icon', href='/img/favicon.png')
+    link(rel='stylesheet', href='/css/style.css')
+    script(src="/js/libs/modernizr.js")
+  body
+    #container
+      header.top
+      != body
+      footer Nodejs.bg &copy; #{new Date().getFullYear()}. 
