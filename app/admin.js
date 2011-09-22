@@ -11,8 +11,17 @@ module.exports = function(app) {
   
   // Login screen.
   app.get('/qosmos', function(req, res) {
-    res.render('index', {
-      title: 'Express'
-    });
+    res.render('sessions/new.jade');
   });
+  
+  // Authentication.
+  app.post('/sessions', function(req, res) {
+    
+  });
+  
+  // Logout.
+  app.del('/sessions', function(req, res) {
+    
+  });
+  
 };
