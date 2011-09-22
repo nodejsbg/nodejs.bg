@@ -9,6 +9,8 @@
 
 var express = require('express');
 var app = module.exports = express.createServer();
+var mongoose = require('mongoose');
+var UriBuilder = require('./lib/uri_builder');
 
 // Configurations.
 var config = require('./config/config');
@@ -22,7 +24,11 @@ require('./config/boot.js')(app, express);
 // Environments.
 require('./config/env.js')(app, express);
 
-// Frotend.
+// Database connection.
+var uriBuilder = new UriBuilder(db[app.settings.env]);
+mongoose.createConnection(uriBuilder.toString());
+
+// Frontend.
 require('./app/site.js')(app);
 
 // Backend.
