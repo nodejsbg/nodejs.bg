@@ -1,0 +1,23 @@
+body,
+input,
+textarea {
+  color: #333;
+	font: 12px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: #efefef;
+}
+
+body {
+  background-image: url('../img/background.png');
+}
+
+#container {
+	margin: 0 auto;
+	width: 990px;
+}
+
+.top {
+  padding: 0 25px;
+  background: white;
+  margin: 0 0 21px 0;
+  position: relative;
+}
