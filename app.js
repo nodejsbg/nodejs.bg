@@ -1,43 +1,34 @@
 
 /*!
  * Nodejs.bg
+ * 
  * Node.js Bulgarian User Group
  * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
  * Licensed under the MIT License.
  */
 
-/**
- * Module dependencies.
- */
- 
 var express = require('express');
 var app = module.exports = express.createServer();
 
-// Configuration
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+// Configurations.
+var config = require('./config/config');
 
-app.configure('development', function() {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-});
+// Database configurations.
+var db = require('./config/db');
 
-app.configure('production', function() {
-  app.use(express.errorHandler());
-});
+// Bootstrap.
+require('./config/boot.js')(app, express);
 
-// Routes
-app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Node.js България - Потребителска група'
-  });
-});
+// Environments.
+require('./config/env.js')(app, express);
 
-app.listen(3000, function() {
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+// Frotend.
+require('./app/site.js')(app);
+
+// Backend.
+require('./app/admin.js')(app);
+
+// Starting the server.
+app.listen(config.server.port, function() {
+  console.log('nodejs.bg listening on port %d in %s mode', app.address().port, app.settings.env);
 });
