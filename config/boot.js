@@ -20,10 +20,10 @@ module.exports = function(app, express, config) {
     app.set('views', root + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
     app.use(express.cookieParser());
     app.use(express.session({ secret: config.session.secret }));
+    app.use(express.methodOverride());
+    app.use(app.router);
     app.use(express.static(root + '/public'));
   });
   

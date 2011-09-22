@@ -10,7 +10,9 @@ html.login
   body
     .container
         h3 Контролна кула
+        - if (errors)
+          .alert-message.error= errors
         form(method='post', action='/sessions')
-          input.span5(type='text', name='user[username]', placeholder='Потребител')
+          input.span5.first(type='text', name='user[username]', placeholder='Потребител')
           input.span5(type='password', name='user[password]', placeholder='Парола')
           input.btn.primary.clearfix(type='submit', value='Вход')

@@ -9,6 +9,12 @@
  
 module.exports = {
   
+  // Backend configurations.
+  admin: {
+    secret: 'qosmos'
+  },
+  
+  // Session configurations.
   session: {
     secret: '#33#33ddDddddz$#44'
   },

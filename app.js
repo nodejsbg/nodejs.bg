@@ -26,13 +26,30 @@ require('./config/env.js')(app, express);
 
 // Database connection.
 var uriBuilder = new UriBuilder(db[app.settings.env]);
-mongoose.createConnection(uriBuilder.toString());
+mongoose.connect(uriBuilder.toString());
+
+// Helpers.
+app.dynamicHelpers({
+  errors: function(req, res) {
+    var message = false;
+    var errors = req.flash('error');
+    
+    if (errors.length > 0) {
+      message = '';
+      errors.forEach(function(error) {
+        message += error;
+      });
+    }
+    
+    return message;
+  }
+});
 
 // Frontend.
 require('./app/site.js')(app);
 
 // Backend.
-require('./app/admin.js')(app, mongoose);
+require('./app/admin.js')(app, mongoose, config);
 
 // Starting the server.
 app.listen(config.server.port, function() {

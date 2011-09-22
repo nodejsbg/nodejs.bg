@@ -7,15 +7,13 @@
  * Licensed under the MIT License.
  */
 
-function validatePresenceOf(value) {
-  return value && value.length;
-}
+var crypto = require('crypto');
 
 module.exports = function(mongoose) {
   
   // User Model.
   var User = new mongoose.Schema({
-    'username': { type: String, validate: [validatePresenceOf, 'Username is required.'], index: { unique: true } },
+    'username': { type: String, index: { unique: true } },
     'password': String,
     'salt': String
   });
@@ -27,7 +25,7 @@ module.exports = function(mongoose) {
    * @returns {Boolean} true if passwords are equal.
    */
   User.method('authenticate', function(plainText) {
-    return this.encryptPassword(plainText) === this.password;
+    return this.hash(plainText) === this.password;
   });
 
   /**

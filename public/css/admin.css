@@ -37,3 +37,7 @@ html.login,
 .login h3 {
   text-align: center;
 }
+
+.login .error {
+  margin-top: 20px;
+}
