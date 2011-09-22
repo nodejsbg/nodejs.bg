@@ -1,4 +1,5 @@
 # Node
+.monitor
 node_modules
 
 # Numerous always-ignore extensions
