@@ -13,7 +13,7 @@ var path = require('path');
 // Root path.
 var root = path.dirname(__dirname);
 
-module.exports = function(app, express) {
+module.exports = function(app, express, config) {
   
   // Configurations.
   app.configure(function(){
@@ -22,6 +22,8 @@ module.exports = function(app, express) {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(app.router);
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: config.session.secret }));
     app.use(express.static(root + '/public'));
   });
   

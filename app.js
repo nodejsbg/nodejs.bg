@@ -19,7 +19,7 @@ var config = require('./config/config');
 var db = require('./config/db');
 
 // Bootstrap.
-require('./config/boot.js')(app, express);
+require('./config/boot.js')(app, express, config);
 
 // Environments.
 require('./config/env.js')(app, express);
@@ -32,7 +32,7 @@ mongoose.createConnection(uriBuilder.toString());
 require('./app/site.js')(app);
 
 // Backend.
-require('./app/admin.js')(app);
+require('./app/admin.js')(app, mongoose);
 
 // Starting the server.
 app.listen(config.server.port, function() {

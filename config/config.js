@@ -9,6 +9,10 @@
  
 module.exports = {
   
+  session: {
+    secret: '#33#33ddDddddz$#44'
+  },
+  
   // Server configurations.
   server: {
     port: 6969

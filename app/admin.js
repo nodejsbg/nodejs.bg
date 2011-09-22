@@ -6,8 +6,12 @@
  * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
  * Licensed under the MIT License.
  */
-
-module.exports = function(app) {
+ 
+module.exports = function(app, mongoose) {
+  
+  // User Model.
+  require('./models/user')(mongoose);
+  var User = mongoose.model('User');
   
   // Login screen.
   app.get('/qosmos', function(req, res) {
