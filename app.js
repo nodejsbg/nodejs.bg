@@ -11,6 +11,7 @@ var express = require('express');
 var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
 var UriBuilder = require('./lib/uri_builder');
+var helpers = require('express-helpers');
 
 // Configurations.
 var config = require('./config/config');
@@ -43,6 +44,10 @@ app.dynamicHelpers({
     
     return message;
   }
+});
+
+app.helpers({
+  link_to: helpers.link_to
 });
 
 // Frontend.

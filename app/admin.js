@@ -11,8 +11,10 @@ module.exports = function(app, mongoose, config) {
   
   // Models.
   require('./models/user')(mongoose);
+  require('./models/post')(mongoose);
   
   var User = mongoose.model('User');
+  var Post = mongoose.model('Post');
   
   // Secret.
   var secret = config.admin.secret;
@@ -25,6 +27,10 @@ module.exports = function(app, mongoose, config) {
    * @param {Object} next
    */
   var restrict = function(req, res, next) {
+    if (app.settings.env == 'development') {
+      return next();
+    }
+    
     // Is id set?
     if (!req.session.userId) {
       return next(new Error(401));
@@ -38,6 +44,14 @@ module.exports = function(app, mongoose, config) {
       next();
     });
   };
+  
+  /**
+   * Helpers.
+   */
+   
+  app.helpers({
+    secret: secret
+  });
   
   // Login screen.
   app.get('/' + secret, function(req, res) {
@@ -57,7 +71,7 @@ module.exports = function(app, mongoose, config) {
       }
       
       // Saves logged user id.
-      req.session.userId = result.id;
+      req.session.userId = result._id;
       
       // Redirects to dashboard.
       res.redirect('/' + secret +'/posts');
@@ -65,7 +79,7 @@ module.exports = function(app, mongoose, config) {
   });
   
   // Logout.
-  app.del('/' + secret + '/logout', restrict, function(req, res) {
+  app.del('/' + secret + '/sessions', restrict, function(req, res) {
     delete req.session.userId;
     res.redirect('/' + secret);
   });
@@ -76,7 +90,11 @@ module.exports = function(app, mongoose, config) {
    
   // GET /admin/posts
   app.get('/' + secret + '/posts', restrict, function(req, res) {
-    
+    Post.find(function(err, posts) {
+      res.render('admin/posts/index', {
+        posts: posts
+      });
+    });
   });
   
   // GET /admin/posts/new

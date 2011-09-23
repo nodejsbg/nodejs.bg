@@ -1,0 +1,24 @@
+!!!5
+html
+  head
+    base(href='/' + secret + '/')
+    title Контролна кула - nodejs.bg
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/admin.css')
+  body
+    .topbar
+      .fill
+        .container
+          a.brand(href='posts') Nodejs.bg - Контролна кула
+          ul.nav.clearfix
+            li!= link_to('Публикации', 'posts')
+            li!= link_to('Потребители', 'users')
+            li.logout
+              form(method='post', action='sessions')
+                input(type='hidden', value='delete', name='_method')
+                input(type='submit', value='Изход')
+      .container
+        .content
+          != body
+        footer
+          p Nodejs.bg - Контролна кула.
