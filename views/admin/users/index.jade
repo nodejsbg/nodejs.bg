@@ -19,7 +19,7 @@ table.zebra-striped.list
         
         form.delete(method='post', action='users/' + user._id)
           input(type='hidden', name='_method', value='delete')
-          input.danger.btn(type='submit', value='Изтриване')
+          input.danger.btn.small(type='submit', value='Изтриване')
 
 .action
   a.btn.success(href='users/new') Добавяне
