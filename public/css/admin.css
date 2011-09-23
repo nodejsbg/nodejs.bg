@@ -88,3 +88,32 @@ body {
 .topbar .logout {
   margin-left: 25px;
 }
+
+.action {
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------------------
+  
+  3. Forms.
+  
+ * --------------------------------------------------------------------------*/
+.form input {
+  display: block;
+}
+
+.form label {
+  margin-top: 20px;
+  text-align: left;
+  width: auto;
+  float: none;
+  display: block;
+}
+
+.form input {
+  margin-top: 5px;
+}
+
+.form input[type=submit] {
+  margin-top: 60px;
+}

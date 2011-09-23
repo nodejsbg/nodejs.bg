@@ -1,4 +1,3 @@
-
 /*!
  * Nodejs.bg
  * 
@@ -11,13 +10,26 @@ var crypto = require('crypto');
 
 module.exports = function(mongoose) {
   
-  // User Model.
+  /**
+   * Post Model.
+   */
+   
+  var Post = new mongoose.Schema({
+    'title': { type: String, index: { unique: true } },
+  });
+  
+  mongoose.model('Post', Post);
+   
+  /**
+   * User Model.
+   */
+   
   var User = new mongoose.Schema({
     'username': { type: String, index: { unique: true } },
     'password': String,
     'salt': String
   });
-  
+
   /**
    * Authenticate method.
    * 
@@ -45,6 +57,7 @@ module.exports = function(mongoose) {
   User.method('hash', function(password) {
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
   });
-  
+
   mongoose.model('User', User);
+  
 };

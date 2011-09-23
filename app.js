@@ -7,11 +7,14 @@
  * Licensed under the MIT License.
  */
 
+/**
+ * Dependencies.
+ */
+ 
 var express = require('express');
 var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
 var UriBuilder = require('./lib/uri_builder');
-var helpers = require('express-helpers');
 
 // Configurations.
 var config = require('./config/config');
@@ -29,26 +32,13 @@ require('./config/env.js')(app, express);
 mongoose.connect((new UriBuilder(db[app.settings.env])).toString());
 
 // Helpers.
-// TODO: Add to separate file.
-app.dynamicHelpers({
-  errors: function(req, res) {
-    var message = false;
-    var errors = req.flash('error');
-    
-    if (errors.length > 0) {
-      message = '';
-      errors.forEach(function(error) {
-        message += error;
-      });
-    }
-    
-    return message;
-  }
-});
+require('./app/helpers.js')(app);
 
-app.helpers({
-  link_to: helpers.link_to
-});
+// Dynamic Helpers.
+require('./app/dynamic_helpers.js')(app);
+
+// Models.
+require('./app/models.js')(mongoose);
 
 // Frontend.
 require('./app/site.js')(app);

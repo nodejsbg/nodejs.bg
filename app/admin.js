@@ -9,11 +9,10 @@
  
 module.exports = function(app, mongoose, config) {
   
-  // Models.
-  require('./models/user')(mongoose);
-  require('./models/post')(mongoose);
-  
+  // User Model.
   var User = mongoose.model('User');
+  
+  // Post Model.
   var Post = mongoose.model('Post');
   
   // Secret.
@@ -128,22 +127,27 @@ module.exports = function(app, mongoose, config) {
    
    // GET /admin/users
   app.get('/' + secret + '/users', restrict, function(req, res) {
-
+    User.find(function(err, users) {
+      res.render('admin/users/index', {
+        users: users
+      });
+    });
   });
 
   // GET /admin/users/new
   app.get('/' + secret + '/users/new', restrict, function(req, res) {
-
+    res.render('admin/users/form', { user: {} });
   });
 
   // GET /admin/users/edit
   app.get('/' + secret + '/users/edit', restrict, function(req, res) {
-
+    
   });
 
   // POST /admin/users
   app.post('/' + secret + '/users', restrict, function(req, res) {
-
+    // Validate and save
+    res.render('admin/users/form', { user: req.body.user });
   });
 
   // PUT /admin/users/1

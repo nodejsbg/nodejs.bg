@@ -12,13 +12,14 @@ html
           a.brand(href='posts') Nodejs.bg - Контролна кула
           ul.nav.clearfix
             li!= link_to('Публикации', 'posts')
+            li!= link_to('Категории', 'users')
             li!= link_to('Потребители', 'users')
             li.logout
               form(method='post', action='sessions')
                 input(type='hidden', value='delete', name='_method')
                 input(type='submit', value='Изход')
-      .container
-        .content
-          != body
-        footer
-          p Nodejs.bg - Контролна кула.
+    .container
+      .content
+        != body
+      footer
+        p Nodejs.bg - Контролна кула.

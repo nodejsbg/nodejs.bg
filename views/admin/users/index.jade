@@ -1,0 +1,21 @@
+- layout('admin')
+
+.page-header
+  h1 Потребители
+  
+table.zebra-striped
+  tr
+    th
+    th Потребителско име
+    th Именце
+    th
+  each user, i in users
+    tr
+      td!= i+1
+      td!= user.username
+      td!= user.full_name
+      td
+        a.btn.small(href='users/edit/' + user._id ) Редактирай
+
+.action
+  a.btn.success(href='users/new') Добавяне
