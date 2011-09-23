@@ -1,3 +1,4 @@
+
 /*!
  * Nodejs.bg
  * 
@@ -6,50 +7,22 @@
  * Licensed under the MIT License.
  */
 
+/**
+ * Module dependencies.
+ */
 var crypto = require('crypto');
+var validator = require('../lib/validator');
 
-module.exports = function(mongoose) {
-  
-  function validatePresenceOf(value) {
-    return value && value.length;
-  }
-  
-  /**
-   * Post Model.
-   */
-  var Post = new mongoose.Schema({
-    'title': { type: String, index: { unique: true } },
-    'body': String,
-    'user_id': mongoose.Schema.ObjectId,
-    'created_at': Date
-  });
-  
-  mongoose.model('Post', Post);
-  
-  /**
-   * Category Model.
-   */
-  var Category = new mongoose.Schema({
-    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } }
-  });
-  
-  mongoose.model('Category', Category);
-  
-  /**
-   * Page Model.
-   */
-  var Page = new mongoose.Schema({
-    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
-    'content': String
-  });
-  
-  mongoose.model('Page', Page);
-  
+/**
+ * Module exports.
+ */
+module.exports = function() {
+
   /**
    * User Model.
    */
   var User = new mongoose.Schema({
-    'username': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
+    'username': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
     'password': String,
     'salt': String
   });
@@ -92,4 +65,5 @@ module.exports = function(mongoose) {
   });
 
   mongoose.model('User', User);
+  
 };

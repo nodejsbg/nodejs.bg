@@ -12,8 +12,8 @@
  */
 var express = require('express');
 var app = module.exports = express.createServer();
-var mongoose = require('mongoose');
 var UriBuilder = require('./lib/uri_builder');
+global.mongoose = require('mongoose');
 
 // Configurations.
 var config = require('./config/config');
@@ -31,19 +31,19 @@ require('./config/env.js')(app, express);
 mongoose.connect((new UriBuilder(db[app.settings.env])).toString());
 
 // Helpers.
-require('./app/helpers.js')(app);
+require('./helpers/helpers.js')(app);
 
 // Dynamic Helpers.
-require('./app/dynamic_helpers.js')(app);
+require('./helpers/dynamic_helpers.js')(app);
 
 // Models.
 require('./app/models.js')(mongoose);
 
 // Frontend.
-require('./app/site.js')(app);
+require('./routes/site.js')(app);
 
 // Backend.
-require('./app/admin.js')(app, mongoose, config);
+require('./routes/admin.js')(app, mongoose, config);
 
 // Starting the server.
 app.listen(config.server.port, function() {
