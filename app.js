@@ -25,10 +25,10 @@ require('./config/boot.js')(app, express, config);
 require('./config/env.js')(app, express);
 
 // Database connection.
-var uriBuilder = new UriBuilder(db[app.settings.env]);
-mongoose.connect(uriBuilder.toString());
+mongoose.connect((new UriBuilder(db[app.settings.env])).toString());
 
 // Helpers.
+// TODO: Add to separate file.
 app.dynamicHelpers({
   errors: function(req, res) {
     var message = false;

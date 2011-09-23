@@ -66,12 +66,75 @@ module.exports = function(app, mongoose, config) {
   
   // Logout.
   app.del('/' + secret + '/logout', restrict, function(req, res) {
-    
+    delete req.session.userId;
+    res.redirect('/' + secret);
   });
   
-  // posts#index.
+  /**
+   * Posts.
+   */
+   
+  // GET /admin/posts
   app.get('/' + secret + '/posts', restrict, function(req, res) {
     
   });
   
+  // GET /admin/posts/new
+  app.get('/' + secret + '/posts/new', restrict, function(req, res) {
+    
+  });
+  
+  // GET /admin/posts/edit
+  app.get('/' + secret + '/posts/edit', restrict, function(req, res) {
+    
+  });
+  
+  // POST /admin/posts
+  app.post('/' + secret + '/posts', restrict, function(req, res) {
+    
+  });
+  
+  // PUT /admin/posts/1
+  app.put('/' + secret + '/posts/:id', restrict, function(req, res) {
+    
+  });
+  
+  // DELETE /admin/posts/1
+  app.del('/' + secret + '/posts/:id', restrict, function(req, res) {
+    
+  });
+  
+  /**
+   * Users.
+   */
+   
+   // GET /admin/users
+  app.get('/' + secret + '/users', restrict, function(req, res) {
+
+  });
+
+  // GET /admin/users/new
+  app.get('/' + secret + '/users/new', restrict, function(req, res) {
+
+  });
+
+  // GET /admin/users/edit
+  app.get('/' + secret + '/users/edit', restrict, function(req, res) {
+
+  });
+
+  // POST /admin/users
+  app.post('/' + secret + '/users', restrict, function(req, res) {
+
+  });
+
+  // PUT /admin/users/1
+  app.put('/' + secret + '/users/:id', restrict, function(req, res) {
+
+  });
+
+  // DELETE /admin/users/1
+  app.del('/' + secret + '/users/:id', restrict, function(req, res) {
+
+  });
 };
