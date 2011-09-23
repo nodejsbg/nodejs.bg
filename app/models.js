@@ -30,7 +30,7 @@ module.exports = function(mongoose) {
    * Category Model.
    */
   var Category = new mongoose.Schema({
-    'name': { type: String, validate: [validatePresenceOf, 'Няма име'], index: { unique: true } },
+    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
   });
   
   mongoose.model('Category', Category);
@@ -39,7 +39,7 @@ module.exports = function(mongoose) {
    * User Model.
    */
   var User = new mongoose.Schema({
-    'username': { type: String, index: { unique: true } },
+    'username': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
     'password': String,
     'salt': String
   });
@@ -70,6 +70,15 @@ module.exports = function(mongoose) {
    */
   User.method('hash', function(password) {
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+  });
+  
+  User.pre('save', function(next) {
+    if (!this.salt) {
+      this.salt = this.makeSalt();
+      this.password = this.hash(this.password);
+    }
+    
+    next();
   });
 
   mongoose.model('User', User);

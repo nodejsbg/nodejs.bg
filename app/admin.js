@@ -156,7 +156,6 @@ module.exports = function(app, mongoose, config) {
   // POST /admin/users
   app.post('/' + secret + '/users', restrict, function(req, res) {
     var user = new User(req.body.user);
-    
     user.save(function(err) {
       if (err) {
         req.flash('error', 'Опа! Пробвай пак, че потребителското име трябва да е уникално.');
