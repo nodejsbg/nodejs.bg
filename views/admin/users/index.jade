@@ -3,7 +3,7 @@
 .page-header
   h1 Потребители
   
-table.zebra-striped
+table.zebra-striped.list
   tr
     th
     th Потребителско име
@@ -16,6 +16,10 @@ table.zebra-striped
       td= user.full_name
       td
         a.btn.small(href='users/edit/' + user._id ) Редактирай
+        
+        form.delete(method='post', action='users/' + user._id)
+          input(type='hidden', name='_method', value='delete')
+          input.danger.btn(type='submit', value='Изтриване')
 
 .action
   a.btn.success(href='users/new') Добавяне

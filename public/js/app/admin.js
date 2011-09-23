@@ -1,6 +1,8 @@
+// TODO: add docs
+
 $(function() {
 
-  $('.delete').bind('click', function(e) {
+  $('.delete').bind('submit', function(e) {
     if (!confirm('Сигурен? Няма връщане назад!')) {
       e.preventDefault();
       return false;

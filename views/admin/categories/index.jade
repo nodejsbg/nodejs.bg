@@ -16,9 +16,9 @@ table.zebra-striped.list
       td
         a.btn.small(href='categories/edit/' + category._id ) Редактирай
         
-        form(method='post', action='categories/' + category._id)
+        form.delete(method='post', action='categories/' + category._id)
           input(type='hidden', name='_method', value='delete')
-          input.danger.btn.delete(type='submit', value='Изтриване')
+          input.danger.btn(type='submit', value='Изтриване')
 
 .action
   a.btn.success(href='categories/new') Добавяне

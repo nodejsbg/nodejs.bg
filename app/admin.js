@@ -155,19 +155,34 @@ module.exports = function(app, mongoose, config) {
 
   // POST /admin/users
   app.post('/' + secret + '/users', restrict, function(req, res) {
-    req.flash('error', 'Грешка!');
-    // Validate and save
-    res.render('admin/users/new', { user: req.body.user });
+    var user = new User(req.body.user);
+    
+    user.save(function(err) {
+      if (err) {
+        req.flash('error', 'Опа! Пробвай пак, че потребителското име трябва да е уникално.');
+        return res.render('admin/users/new', { users: req.body.user });
+      }
+      req.flash('success', 'Добавихме го тоя пич.');
+      res.redirect('/' + secret + '/users');
+    });
+    
   });
 
   // PUT /admin/users/1
   app.put('/' + secret + '/users/:id', restrict, function(req, res) {
-
+    
   });
 
   // DELETE /admin/users/1
   app.del('/' + secret + '/users/:id', restrict, function(req, res) {
-
+    User.remove({ _id: req.params.id }, function(err, count) {
+      if (count) {
+        req.flash('success', 'Изтрих го тоя пич.');
+      } else {
+        req.flash('error', 'Не се получи, може да е безсмъртен.');
+      }
+      res.redirect('/' + secret + '/users');
+    });
   });
   
   /**

@@ -8,9 +8,8 @@
  */
 
 /**
- * Dependencies.
+ * Module dependencies.
  */
- 
 var express = require('express');
 var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
