@@ -2,8 +2,9 @@
 
 .page-header
   h1 Категории
+  != messages
   
-table.zebra-striped
+table.zebra-striped.list
   tr
     th
     th Именце
@@ -14,6 +15,10 @@ table.zebra-striped
       td= category.name
       td
         a.btn.small(href='categories/edit/' + category._id ) Редактирай
+        
+        form(method='post', action='categories/' + category._id)
+          input(type='hidden', name='_method', value='delete')
+          input.danger.btn.delete(type='submit', value='Изтриване')
 
 .action
   a.btn.success(href='categories/new') Добавяне

@@ -209,7 +209,7 @@ module.exports = function(app, mongoose, config) {
          req.flash('error', 'Опа! Пробвай пак.');
          return res.render('admin/categories/new', { category: req.body.category });
        }
-       req.flash('error', 'Добавихме нова категория.');
+       req.flash('success', 'Добавихме нова категория.');
        res.redirect('/' + secret + '/categories');
      });
    });
@@ -229,6 +229,13 @@ module.exports = function(app, mongoose, config) {
 
    // DELETE /admin/categories/1
    app.del('/' + secret + '/categories/:id', restrict, function(req, res) {
-
+     Category.remove({ _id: req.params.id }, function(err, count) {
+       if (count) {
+         req.flash('success', 'Изтрих я.');
+       } else {
+         req.flash('error', 'Не се получи.');
+       }
+       res.redirect('/' + secret + '/categories');
+     });
    });
 };

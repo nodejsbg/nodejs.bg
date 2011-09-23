@@ -117,3 +117,17 @@ body {
 .form input[type=submit] {
   margin-top: 60px;
 }
+
+
+.list form {
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.list tr td:first-child {
+  width: 25px;
+}
+
+.list tr td:last-child {
+  width: 200px;
+}
