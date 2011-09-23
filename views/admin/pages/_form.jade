@@ -1,0 +1,10 @@
+form.form(action='pages' + (page._id ? '/' + page._id : ''), method='post')
+  - if (page._id)
+    input(type='hidden', name='_method', value='put')
+    
+  label Име
+  input.span7.clearfix(type='text', value=page.name, name='page[name]', placeholder='Петър плет плете, по три пръта преплита...')
+  
+  textarea#editor.editor(name='page[content]')!=page.content
+  
+  input.btn.primary(type='submit', value='Запазване')

@@ -6,6 +6,7 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/admin.css')
     script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js')
+    script(type='text/javascript', src='/js/libs/nicEdit.js')
     script(type='text/javascript', src='/js/app/admin.js')
   body
     .topbar
@@ -15,6 +16,7 @@ html
           ul.nav.clearfix
             li!= link_to('Публикации', 'posts')
             li!= link_to('Категории', 'categories')
+            li!= link_to('Страници', 'pages')
             li!= link_to('Потребители', 'users')
             li.logout
               form(method='post', action='sessions')

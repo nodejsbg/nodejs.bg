@@ -18,6 +18,9 @@ module.exports = function(app, mongoose, config) {
   // Category Model.
   var Category = mongoose.model('Category');
   
+  // Page Model.
+  var Page = mongoose.model('Page');
+  
   // Secret.
   var secret = config.admin.secret;
   
@@ -250,6 +253,73 @@ module.exports = function(app, mongoose, config) {
          req.flash('error', 'Не се получи.');
        }
        res.redirect('/' + secret + '/categories');
+     });
+   });
+   
+   /**
+    * Pages.
+    */
+    
+   // GET /admin/pages
+   app.get('/' + secret + '/pages', restrict, function(req, res) {
+     Page.find(function(err, pages) {
+       res.render('admin/pages/index', {
+         pages: pages
+       });
+     });
+   });
+
+   // GET /admin/pages/new
+   app.get('/' + secret + '/pages/new', restrict, function(req, res) {
+     res.render('admin/pages/new');
+   });
+
+   // GET /admin/pages/edit
+   app.get('/' + secret + '/pages/edit/:id', restrict, function(req, res) {
+     Page.findOne({ _id: req.params.id }, function(err, page) {
+       if (err) {
+         req.flash('error', 'Опа. Нещо тая страничка липсва.');
+         return res.redirect('/' + secret + '/pages');
+       }
+       res.render('admin/pages/edit', { page: page });
+     });
+   });
+
+   // POST /admin/pages
+   app.post('/' + secret + '/pages', restrict, function(req, res) {
+     var page = new Page(req.body.page);
+     page.save(function(err) {
+       if (err) {
+         req.flash('error', 'Опа! Пробвай пак.');
+         return res.render('admin/pages/new', { page: req.body.page });
+       }
+       req.flash('success', 'Добавихме нова страничка.');
+       res.redirect('/' + secret + '/pages');
+     });
+   });
+
+   // PUT /admin/pages/1
+   app.put('/' + secret + '/pages/:id', restrict, function(req, res) {
+     Page.update({ _id:  req.params.id}, req.body.page, function(err, count) {
+       // Nothing found?
+        if (err || !count) {
+          req.flash('error', 'Не я намерих тая.');
+          return res.render('admin/pages');
+        }
+        req.flash('success', 'Разцепихме я тая страничка.');
+        res.redirect('/' + secret + '/pages/edit/' + req.params.id);
+     });
+   });
+
+   // DELETE /admin/pages/1
+   app.del('/' + secret + '/pages/:id', restrict, function(req, res) {
+     Page.remove({ _id: req.params.id }, function(err, count) {
+       if (count) {
+         req.flash('success', 'Изтрих я.');
+       } else {
+         req.flash('error', 'Не се получи.');
+       }
+       res.redirect('/' + secret + '/pages');
      });
    });
 };

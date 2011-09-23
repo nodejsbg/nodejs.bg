@@ -30,10 +30,20 @@ module.exports = function(mongoose) {
    * Category Model.
    */
   var Category = new mongoose.Schema({
-    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
+    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } }
   });
   
   mongoose.model('Category', Category);
+  
+  /**
+   * Page Model.
+   */
+  var Page = new mongoose.Schema({
+    'name': { type: String, validate: [validatePresenceOf, 'empty'], index: { unique: true } },
+    'content': String
+  });
+  
+  mongoose.model('Page', Page);
   
   /**
    * User Model.
