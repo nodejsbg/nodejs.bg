@@ -12,7 +12,8 @@ var helpers = require('express-helpers');
 module.exports = function(app) {
   
   app.helpers({
-    link_to: helpers.link_to
+    link_to: helpers.link_to,
+    secret: app.config.admin.secret
   }); 
 
 };

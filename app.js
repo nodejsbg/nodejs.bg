@@ -13,6 +13,7 @@
 var express = require('express');
 var app = module.exports = express.createServer();
 var UriBuilder = require('./lib/uri_builder');
+app.config = require('./config/config');
 global.mongoose = require('mongoose');
 
 // Configurations.
@@ -36,14 +37,8 @@ require('./helpers/helpers.js')(app);
 // Dynamic Helpers.
 require('./helpers/dynamic_helpers.js')(app);
 
-// Models.
-require('./app/models.js')(mongoose);
-
-// Frontend.
-require('./routes/site.js')(app);
-
-// Backend.
-require('./routes/admin.js')(app, mongoose, config);
+// Routes.
+require('./config/routes.js')(app);
 
 // Starting the server.
 app.listen(config.server.port, function() {
