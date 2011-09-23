@@ -1,0 +1,6 @@
+- layout('admin')
+
+.page-header
+  h1 Редактиране на #{category.name}
+  != messages
+  != partial('_form', { category: category })

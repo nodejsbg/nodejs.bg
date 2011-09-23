@@ -15,6 +15,9 @@ module.exports = function(app, mongoose, config) {
   // Post Model.
   var Post = mongoose.model('Post');
   
+  // Category Model.
+  var Category = mongoose.model('Category');
+  
   // Secret.
   var secret = config.admin.secret;
   
@@ -166,4 +169,66 @@ module.exports = function(app, mongoose, config) {
   app.del('/' + secret + '/users/:id', restrict, function(req, res) {
 
   });
+  
+  /**
+   * Categories.
+   */
+   
+   // GET /admin/categories
+   app.get('/' + secret + '/categories', restrict, function(req, res) {
+     
+     Category.find(function(err, categories) {
+       res.render('admin/categories/index', {
+         categories: categories
+       });
+     });
+     
+   });
+
+   // GET /admin/categories/new
+   app.get('/' + secret + '/categories/new', restrict, function(req, res) {
+     res.render('admin/categories/new');
+   });
+
+   // GET /admin/categories/edit
+   app.get('/' + secret + '/categories/edit/:id', restrict, function(req, res) {
+     Category.findOne({ _id: req.params.id }, function(err, category) {
+       if (err) {
+         req.flash('error', 'Опа. Нещо тая категорийка липсва.');
+         return res.redirect('/' + secret + '/categories');
+       }
+       res.render('admin/categories/edit', { category: category });
+     });
+   });
+
+   // POST /admin/categories
+   app.post('/' + secret + '/categories', restrict, function(req, res) {
+     var category = new Category(req.body.category);
+     category.save(function(err) {
+       if (err) {
+         req.flash('error', 'Има нещо сгрешено.');
+         return res.render('admin/categories/new', { category: req.body.category });
+       }
+       req.flash('error', 'Добавихме нова категория.');
+       res.redirect('/' + secret + '/categories');
+     });
+   });
+
+   // PUT /admin/categories/1
+   app.put('/' + secret + '/categories/:id', restrict, function(req, res) {
+     Category.update({ _id:  req.params.id}, req.body.category, function(err, count) {
+       // Nothing found?
+        if (err || !count) {
+          req.flash('error', 'Не я намерих тая.');
+          return res.render('admin/categories');
+        }
+        req.flash('success', 'Разцепихме я тая категория.');
+        res.redirect('/' + secret + '/categories/edit/' + req.params.id);
+     });
+   });
+
+   // DELETE /admin/categories/1
+   app.del('/' + secret + '/categories/:id', restrict, function(req, res) {
+
+   });
 };

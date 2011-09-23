@@ -21,7 +21,16 @@ module.exports = function(mongoose) {
   });
   
   mongoose.model('Post', Post);
-   
+  
+  /**
+   * Category Model.
+   */
+  var Category = new mongoose.Schema({
+    'name': { type: String, index: { unique: true } },
+  });
+  
+  mongoose.model('Category', Category);
+  
   /**
    * User Model.
    */

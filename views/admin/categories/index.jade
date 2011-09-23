@@ -1,0 +1,19 @@
+- layout('admin')
+
+.page-header
+  h1 Категории
+  
+table.zebra-striped
+  tr
+    th
+    th Именце
+    th
+  each category, i in categories
+    tr
+      td= i+1
+      td= category.name
+      td
+        a.btn.small(href='categories/edit/' + category._id ) Редактирай
+
+.action
+  a.btn.success(href='categories/new') Добавяне

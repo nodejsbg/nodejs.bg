@@ -1,0 +1,8 @@
+form.form(action='categories' + (category._id ? '/' + category._id : ''), method='post')
+  - if (category._id)
+    input(type='hidden', name='_method', value='put')
+    
+  label Име
+  input.span7(type='text', value=category.name, name='category[name]', placeholder='Вафли с локум.')
+  
+  input.btn.primary(type='submit', value='Запазване')
