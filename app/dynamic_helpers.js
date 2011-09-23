@@ -10,18 +10,30 @@
 module.exports = function(app) {
   
   app.dynamicHelpers({
-    errors: function(req, res) {
-      var message = false;
-      var errors = req.flash('error');
-
-      if (errors.length > 0) {
-        message = '';
-        errors.forEach(function(error) {
-          message += error;
-        });
-      }
-
-      return message;
+    
+    /**
+     * Returns all flash messages.
+     */
+    messages: function(req, res) {
+      var messages = {
+        error: 'error',
+        success: 'success'
+      };
+      
+      var html = '';
+      
+      Object.keys(messages).forEach(function(type) {
+        var items = req.flash(type);
+        if (items.length > 0) {
+          html += '<div class="alert-message ' + messages[type] +'">';
+          items.forEach(function(item) {
+            html += item;
+          });
+          html += '</div>';
+        }
+      });
+      
+      return html;
     }
   });
   

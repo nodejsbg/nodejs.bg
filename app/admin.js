@@ -45,9 +45,8 @@ module.exports = function(app, mongoose, config) {
   };
   
   /**
-   * Helpers.
+   * Additional helpers.
    */
-   
   app.helpers({
     secret: secret
   });
@@ -80,6 +79,7 @@ module.exports = function(app, mongoose, config) {
   // Logout.
   app.del('/' + secret + '/sessions', restrict, function(req, res) {
     delete req.session.userId;
+    req.flash('success', 'До скоро!');
     res.redirect('/' + secret);
   });
   
@@ -140,8 +140,14 @@ module.exports = function(app, mongoose, config) {
   });
 
   // GET /admin/users/edit
-  app.get('/' + secret + '/users/edit', restrict, function(req, res) {
-    
+  app.get('/' + secret + '/users/edit/:id', restrict, function(req, res) {
+    User.findOne({ _id: req.params.id }, function(err, user) {
+      if (err) {
+        req.flash('error', 'Тоя не го знам.');
+        return res.redirect('/' + secret + '/users');
+      }
+      res.render('admin/users/form', { user: user });
+    });
   });
 
   // POST /admin/users

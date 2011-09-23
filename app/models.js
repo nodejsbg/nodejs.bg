@@ -13,9 +13,11 @@ module.exports = function(mongoose) {
   /**
    * Post Model.
    */
-   
   var Post = new mongoose.Schema({
     'title': { type: String, index: { unique: true } },
+    'body': String,
+    'user_id': mongoose.Schema.ObjectId,
+    'created_at': Date
   });
   
   mongoose.model('Post', Post);
@@ -23,7 +25,6 @@ module.exports = function(mongoose) {
   /**
    * User Model.
    */
-   
   var User = new mongoose.Schema({
     'username': { type: String, index: { unique: true } },
     'password': String,
@@ -59,5 +60,4 @@ module.exports = function(mongoose) {
   });
 
   mongoose.model('User', User);
-  
 };
