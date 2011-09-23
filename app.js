@@ -13,17 +13,16 @@
 var express = require('express');
 var app = module.exports = express.createServer();
 var UriBuilder = require('./lib/uri_builder');
-app.config = require('./config/config');
 global.mongoose = require('mongoose');
 
 // Configurations.
-var config = require('./config/config');
+var config = app.config = require('./config/config');
 
 // Database configurations.
 var db = require('./config/db');
 
 // Bootstrap.
-require('./config/boot.js')(app, express, config);
+require('./config/boot.js')(app, express);
 
 // Environments.
 require('./config/env.js')(app, express);

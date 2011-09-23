@@ -25,4 +25,5 @@ module.exports = function() {
   });
   
   mongoose.model('Category', Category);
+  
 };

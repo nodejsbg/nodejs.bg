@@ -7,13 +7,21 @@
  * Licensed under the MIT License.
  */
 
-// Path Module.
+/**
+ * Module dependencies.
+ */
 var path = require('path');
 
 // Root path.
 var root = path.dirname(__dirname);
 
-module.exports = function(app, express, config) {
+/**
+ * Module exports.
+ * 
+ * @param {Object} app
+ * @param {Object} express
+ */
+module.exports = function(app, express) {
   
   // Configurations.
   app.configure(function(){
@@ -21,7 +29,7 @@ module.exports = function(app, express, config) {
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
     app.use(express.cookieParser());
-    app.use(express.session({ secret: config.session.secret }));
+    app.use(express.session({ secret: app.config.session.secret }));
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(root + '/public'));

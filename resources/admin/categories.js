@@ -11,6 +11,12 @@
 require('../../models/category')();
 var Category = mongoose.model('Category');
 
+/**
+ * Module exports.
+ * 
+ * @param {Object} app
+ * @param {Array} middlewares
+ */
 module.exports = function(app, middlewares) {
 
   // GET /admin/categories

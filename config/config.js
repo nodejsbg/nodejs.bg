@@ -7,6 +7,9 @@
  * Licensed under the MIT License.
  */
  
+/**
+ * Module exports.
+ */
 module.exports = {
   
   // Backend configurations.

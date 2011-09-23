@@ -11,6 +11,12 @@
 require('../../models/user')();
 var User = mongoose.model('User');
 
+/**
+ * Module exports.
+ * 
+ * @param {Object} app
+ * @param {Array} middlewares
+ */
 module.exports = function(app, middlewares) {
   
   // GET /admin/users

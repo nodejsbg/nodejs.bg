@@ -7,6 +7,11 @@
  * Licensed under the MIT License.
  */
 
+/**
+ * Module exports.
+ * 
+ * @param {Object} app
+ */
 module.exports = function(app) {
   
   // Common middlewares for admin.
