@@ -206,7 +206,7 @@ module.exports = function(app, mongoose, config) {
      var category = new Category(req.body.category);
      category.save(function(err) {
        if (err) {
-         req.flash('error', 'Има нещо сгрешено.');
+         req.flash('error', 'Опа! Пробвай пак.');
          return res.render('admin/categories/new', { category: req.body.category });
        }
        req.flash('error', 'Добавихме нова категория.');

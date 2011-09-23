@@ -10,6 +10,10 @@ var crypto = require('crypto');
 
 module.exports = function(mongoose) {
   
+  function validatePresenceOf(value) {
+    return value && value.length;
+  }
+  
   /**
    * Post Model.
    */
@@ -26,7 +30,7 @@ module.exports = function(mongoose) {
    * Category Model.
    */
   var Category = new mongoose.Schema({
-    'name': { type: String, index: { unique: true } },
+    'name': { type: String, validate: [validatePresenceOf, 'Няма име'], index: { unique: true } },
   });
   
   mongoose.model('Category', Category);

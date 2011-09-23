@@ -11,9 +11,9 @@ table.zebra-striped
     th
   each user, i in users
     tr
-      td!= i+1
-      td!= user.username
-      td!= user.full_name
+      td= i+1
+      td= user.username
+      td= user.full_name
       td
         a.btn.small(href='users/edit/' + user._id ) Редактирай
 
