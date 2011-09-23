@@ -136,7 +136,7 @@ module.exports = function(app, mongoose, config) {
 
   // GET /admin/users/new
   app.get('/' + secret + '/users/new', restrict, function(req, res) {
-    res.render('admin/users/form', { user: {} });
+    res.render('admin/users/new');
   });
 
   // GET /admin/users/edit
@@ -146,14 +146,15 @@ module.exports = function(app, mongoose, config) {
         req.flash('error', 'Тоя не го знам.');
         return res.redirect('/' + secret + '/users');
       }
-      res.render('admin/users/form', { user: user });
+      res.render('admin/users/edit', { user: user });
     });
   });
 
   // POST /admin/users
   app.post('/' + secret + '/users', restrict, function(req, res) {
+    req.flash('error', 'Грешка!');
     // Validate and save
-    res.render('admin/users/form', { user: req.body.user });
+    res.render('admin/users/new', { user: req.body.user });
   });
 
   // PUT /admin/users/1

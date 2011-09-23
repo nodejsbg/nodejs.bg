@@ -1,8 +1,3 @@
-- layout('admin')
-
-.page-header
-  h1 Добавяне на потребител
-
 form.form(action='users' + (user._id ? '/' + user._id : ''), method='post')
   - if (user._id)
     input(type='hidden', name='_method', value='put')
@@ -11,9 +6,9 @@ form.form(action='users' + (user._id ? '/' + user._id : ''), method='post')
   input.span7(type='text', value=user.username, name='user[username]', placeholder='Букви и цифри. Такива неща.')
   
   label Име
-  input.span7(type='text', value=user.name, name='user[name]', placeholder='Може и псевдоним.')
+  input.span7(type='text', value=user.name, name='user[name]', placeholder='Може и псевдоним.', autocomplete='off')
   
   label Парола
-  input.span7(type='password', name='user[password]', placeholder='Нещо хитро. Поне 5 символа.')
+  input.span7(type='password', name='user[password]', placeholder='Нещо хитро. Поне 5 символа.', autocomplete='off')
   
   input.btn.primary(type='submit', value='Запазване')
