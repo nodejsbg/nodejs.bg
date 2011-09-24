@@ -9,6 +9,9 @@ form.form(action='posts' + (post._id ? '/' + post._id : ''), method='post')
   textarea#editor.editor(name='post[content]')!=post.content
   
   label Категория
-  select
+  select(name='post[category_id]')
+    option
+    each category in categories
+      option(value=category._id)= category.name
   
   input.btn.primary(type='submit', value='Запазване')

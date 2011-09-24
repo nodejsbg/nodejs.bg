@@ -11,6 +11,10 @@
 require('../../models/post')();
 var Post = mongoose.model('Post');
 
+// Category Model.
+require('../../models/category')();
+var Category = mongoose.model('Category');
+
 /**
  * Module exports.
  * 
@@ -30,7 +34,9 @@ module.exports = function(app, middlewares) {
 
   // GET /admin/posts/new
   app.get('/' + app.config.admin.secret + '/posts/new', middlewares, function(req, res) {
-    res.render('admin/posts/new');
+    Category.find({}, function(err, categories) {
+      res.render('admin/posts/new', { categories: categories });
+    });
   });
 
   // GET /admin/posts/edit
@@ -40,7 +46,9 @@ module.exports = function(app, middlewares) {
         req.flash('error', 'Опа. Нещо тая страничка липсва.');
         return res.redirect('/' + app.config.admin.secret + '/posts');
       }
-      res.render('admin/posts/edit', { post: post });
+      Category.find({}, function(err, categories) {
+        res.render('admin/posts/edit', { post: post });
+      });
     });
   });
 
