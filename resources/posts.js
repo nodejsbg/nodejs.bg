@@ -7,6 +7,11 @@
  * Licensed under the MIT License.
  */
 
+/**
+ * Module exports.
+ * 
+ * @param {Object} app HTTPServer.
+ */
 module.exports = function(app) {
 
   // Home page.

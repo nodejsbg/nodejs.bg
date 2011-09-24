@@ -14,8 +14,8 @@
  */
 module.exports = function(app) {
 
-  // Page.
-  app.get('/page/:permlink', function(req, res) {
+  // Category.
+  app.get('/category/:permlink', function(req, res) {
     
   });
 

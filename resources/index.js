@@ -10,7 +10,7 @@
 /**
  * Module exports.
  * 
- * @param {Object} app
+ * @param {Object} app HTTPServer.
  */
 module.exports = function(app) {
   

@@ -13,8 +13,8 @@ var Page = require('../../models/page');
 /**
  * Module exports.
  * 
- * @param {Object} app
- * @param {Array} middlewares
+ * @param {Object} app HTTPServer.
+ * @param {Array} middlewares Middlewares for the admin.
  */
 module.exports = function(app, middlewares) {
 
