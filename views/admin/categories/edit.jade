@@ -2,5 +2,6 @@
 
 .page-header
   h1 Редактиране на #{category.name}
-  != messages
-  != partial('_form', { category: category })
+
+!= messages
+!= partial('_form', { category: category })
