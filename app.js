@@ -36,8 +36,8 @@ require('./helpers/helpers.js')(app);
 // Dynamic Helpers.
 require('./helpers/dynamic_helpers.js')(app);
 
-// Routes.
-require('./config/routes.js')(app);
+// Resources.
+require('./resources')(app);
 
 // Starting the server.
 app.listen(config.server.port, function() {

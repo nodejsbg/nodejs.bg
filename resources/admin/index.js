@@ -15,21 +15,21 @@
 module.exports = function(app) {
   
   // Common middlewares for admin.
-  var admin = [require('../middlewares/restrict')];
+  var admin = [require('../../middlewares/restrict')];
 
   // Sessions - login, logout etc.
-  require('../resources/admin/sessions')(app, admin);
+  require('./sessions')(app, admin);
 
   // Categories.
-  require('../resources/admin/categories')(app, admin);
+  require('./categories')(app, admin);
 
   // Pages.
-  require('../resources/admin/pages')(app, admin);
+  require('./pages')(app, admin);
 
   // Posts.
-  require('../resources/admin/posts')(app, admin);
+  require('./posts')(app, admin);
 
   // Users.
-  require('../resources/admin/users')(app, admin);
+  require('./users')(app, admin);
 
 };
