@@ -24,8 +24,20 @@ module.exports = function() {
   var User = new mongoose.Schema({
     'username': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
     'password': String,
+    'name': String,
     'salt': String
   });
+  
+  /**
+   * Virtual field password.
+   */
+  User.virtual('passwd')
+    .set(function(password) { 
+      this._passwd = password;
+    })
+    .get(function() { 
+      return this._passwd; 
+    });
 
   /**
    * Authenticate method.
@@ -56,12 +68,20 @@ module.exports = function() {
   });
   
   User.pre('save', function(next) {
-    if (!this.salt) {
+    if (this.isNew) {
       this.salt = this.makeSalt();
-      this.password = this.hash(this.password);
+    } else if (!this.passwd) {
+      return next();
     }
     
+    if (this.passwd.length < 5) {
+      return next(new Error('Паролата трябва да е поне 5 символа'));
+    }
+    
+    this.password = this.hash(this.passwd);
+    
     next();
+    
   });
 
   mongoose.model('User', User);

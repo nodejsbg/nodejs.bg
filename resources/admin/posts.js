@@ -63,6 +63,7 @@ module.exports = function(app, middlewares) {
   app.post('/' + app.config.admin.secret + '/posts', middlewares, function(req, res) {
     var post = new Post(req.body.post);
     post.user_id = req.session.userId;
+    
     post.save(function(err) {
       if (err) {
         req.flash('error', 'Опа! Пробвай пак.');
