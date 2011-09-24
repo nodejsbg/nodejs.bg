@@ -8,8 +8,7 @@
  */
  
 // Category Model.
-require('../../models/category')();
-var Category = mongoose.model('Category');
+var Category = require('../../models/category');
 
 /**
  * Module exports.

@@ -13,17 +13,15 @@
 var validator = require('../lib/validator');
 
 /**
+ * Category Model.
+ */
+var Category = new mongoose.Schema({
+  'name': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
+});
+
+mongoose.model('Category', Category);
+
+/**
  * Module exports.
  */
-module.exports = function() {
-
-  /**
-   * Category Model.
-   */
-  var Category = new mongoose.Schema({
-    'name': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
-  });
-  
-  mongoose.model('Category', Category);
-  
-};
+module.exports = mongoose.model('Category');

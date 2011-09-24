@@ -6,7 +6,10 @@
  * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
  * Licensed under the MIT License.
  */
- 
+
+/**
+ * Module exports.
+ */
 module.exports = {
   
   // Development.

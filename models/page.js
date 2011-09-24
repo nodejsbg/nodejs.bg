@@ -8,23 +8,22 @@
  */
 
 /**
+ * Module dependencies.
+ */
+var validator = require('../lib/validator');
+
+/**
+ * Page Model.
+ */
+var Page = new mongoose.Schema({
+ 'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
+ 'content': String
+});
+
+// Defines the model.
+mongoose.model('Page', Page);
+
+/**
  * Module exports.
  */
-module.exports = function() {
-  
-  /**
-   * Module dependencies.
-   */
-  var validator = require('../lib/validator');
-  
-  /**
-   * Page Model.
-   */
-  var Page = new mongoose.Schema({
-    'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
-    'content': String
-  });
-
-  mongoose.model('Page', Page);
-  
-};
+module.exports = mongoose.model('Page');

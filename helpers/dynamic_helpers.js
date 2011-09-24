@@ -14,32 +14,14 @@
  */
 module.exports = function(app) {
   
+  /**
+   * Module dependencies.
+   */
+  var flash = require('../lib/flash');
+  
+  // Register the given dynamic view helpers.
   app.dynamicHelpers({
-    
-    /**
-     * Returns all flash messages.
-     */
-    messages: function(req, res) {
-      var messages = {
-        error: 'error',
-        success: 'success'
-      };
-      
-      var html = '';
-      
-      Object.keys(messages).forEach(function(type) {
-        var items = req.flash(type);
-        if (items.length > 0) {
-          html += '<div class="alert-message ' + messages[type] +'">';
-          items.forEach(function(item) {
-            html += item;
-          });
-          html += '</div>';
-        }
-      });
-      
-      return html;
-    }
+    messages: flash.messages
   });
   
 };

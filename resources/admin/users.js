@@ -8,8 +8,7 @@
  */
  
 // User Model.
-require('../../models/user')();
-var User = mongoose.model('User');
+var User = require('../../models/user');
 
 /**
  * Module exports.

@@ -8,8 +8,7 @@
  */
  
 // Page Model.
-require('../../models/page')();
-var Page = mongoose.model('Page');
+var Page = require('../../models/page');
 
 /**
  * Module exports.

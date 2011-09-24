@@ -8,17 +8,18 @@
  */
 
 /**
- * Module dependencies.
- */
-var helpers = require('express-helpers');
-
-/**
- * Module exports
+ * Module exports.
  * 
  * @param {Object} app
  */
 module.exports = function(app) {
   
+  /**
+   * Module dependencies.
+   */
+  var helpers = require('express-helpers');
+    
+  // Register the given helpers.
   app.helpers({
     link_to: helpers.link_to,
     select_tag: helpers.select_tag,

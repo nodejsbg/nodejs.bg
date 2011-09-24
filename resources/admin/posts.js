@@ -8,16 +8,13 @@
  */
  
 // Post Model.
-require('../../models/post')();
-var Post = mongoose.model('Post');
+var Post = require('../../models/post');
 
 // Category Model.
-require('../../models/category')();
-var Category = mongoose.model('Category');
+var Category = require('../../models/category');
 
 // User Model.
-require('../../models/user')();
-var User = mongoose.model('User');
+var User = require('../../models/user');
 
 /**
  * Module exports.
