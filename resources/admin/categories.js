@@ -33,7 +33,7 @@ module.exports = function(app, middlewares) {
     res.render('admin/categories/new');
   });
 
-  // GET /admin/categories/edit
+  // GET /admin/categories/edit/1
   app.get('/' + app.config.admin.secret + '/categories/edit/:id', middlewares, function(req, res) {
     Category.findOne({ _id: req.params.id }, function(err, category) {
       if (err) {

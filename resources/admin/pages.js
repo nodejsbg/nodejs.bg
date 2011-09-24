@@ -33,7 +33,7 @@ module.exports = function(app, middlewares) {
     res.render('admin/pages/new');
   });
 
-  // GET /admin/pages/edit
+  // GET /admin/pages/edit/1
   app.get('/' + app.config.admin.secret + '/pages/edit/:id', middlewares, function(req, res) {
     Page.findOne({ _id: req.params.id }, function(err, page) {
       if (err) {
