@@ -1,0 +1,14 @@
+form.form(action='posts' + (post._id ? '/' + post._id : ''), method='post')
+  - if (post._id)
+    input(type='hidden', name='_method', value='put')
+    
+  label Заглавие
+  input.span7.clearfix(type='text', value=post.name, name='post[name]')
+  
+  label Съдържание
+  textarea#editor.editor(name='post[content]')!=post.content
+  
+  label Категория
+  select
+  
+  input.btn.primary(type='submit', value='Запазване')

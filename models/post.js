@@ -17,7 +17,8 @@ module.exports = function() {
    */
   var Post = new mongoose.Schema({
     'title': { type: String, index: { unique: true } },
-    'body': String,
+    'content': String,
+    'category_id': mongoose.Schema.ObjectId,
     'user_id': mongoose.Schema.ObjectId,
     'created_at': Date
   });
