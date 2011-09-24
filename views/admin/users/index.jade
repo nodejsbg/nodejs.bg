@@ -2,16 +2,18 @@
 
 .page-header
   h1 Потребители
-  
+
+!= messages
+
 table.zebra-striped.list
   tr
     th
     th Потребителско име
-    th Именце
+    th Име
     th
   each user, i in users
     tr
-      td= i+1
+      td= i + 1 + '.'
       td= user.username
       td= user.full_name
       td

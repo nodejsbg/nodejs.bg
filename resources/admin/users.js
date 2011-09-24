@@ -74,4 +74,5 @@ module.exports = function(app, middlewares) {
       res.redirect('/' + app.config.admin.secret + '/users');
     });
   });
+  
 };

@@ -15,6 +15,10 @@ var Post = mongoose.model('Post');
 require('../../models/category')();
 var Category = mongoose.model('Category');
 
+// User Model.
+require('../../models/user')();
+var User = mongoose.model('User');
+
 /**
  * Module exports.
  * 
@@ -25,10 +29,13 @@ module.exports = function(app, middlewares) {
 
   // GET /admin/posts
   app.get('/' + app.config.admin.secret + '/posts', middlewares, function(req, res) {
-    Post.find(function(err, posts) {
-      res.render('admin/posts/index', {
-        posts: posts
-      });
+    Post.find()
+      .sort('created_at', 'descending')
+      .populate('user_id')
+      .run(function(err, posts) {
+        res.render('admin/posts/index', {
+          posts: posts
+        });
     });
   });
 
@@ -39,7 +46,7 @@ module.exports = function(app, middlewares) {
     });
   });
 
-  // GET /admin/posts/edit
+  // GET /admin/posts/edit/1
   app.get('/' + app.config.admin.secret + '/posts/edit/:id', middlewares, function(req, res) {
     Post.findOne({ _id: req.params.id }, function(err, post) {
       if (err) {
@@ -47,7 +54,7 @@ module.exports = function(app, middlewares) {
         return res.redirect('/' + app.config.admin.secret + '/posts');
       }
       Category.find({}, function(err, categories) {
-        res.render('admin/posts/edit', { post: post });
+        res.render('admin/posts/edit', { post: post, categories: categories });
       });
     });
   });
@@ -55,10 +62,17 @@ module.exports = function(app, middlewares) {
   // POST /admin/posts
   app.post('/' + app.config.admin.secret + '/posts', middlewares, function(req, res) {
     var post = new Post(req.body.post);
+    post.user_id = req.session.userId;
     post.save(function(err) {
       if (err) {
         req.flash('error', 'Опа! Пробвай пак.');
-        return res.render('admin/posts/new', { post: req.body.post });
+        Category.find({}, function(err, categories) {
+          res.render('admin/posts/new', { 
+            post: req.body.post, 
+            categories: categories 
+          });
+        });
+        return;
       }
       req.flash('success', 'Добавихме нова страничка.');
       res.redirect('/' + app.config.admin.secret + '/posts');

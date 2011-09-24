@@ -26,6 +26,10 @@ $(function() {
     iconsPath : '/img/nicEditorIcons.gif'
   };
   
-  var editor = new nicEditor(params).panelInstance('editor');
+  $.each(['editor', 'summary'], function(i, id) {
+    if ($('#' + id).length) {
+      new nicEditor(params).panelInstance(id);
+    }
+  });
   
 });

@@ -7,12 +7,14 @@
  * Licensed under the MIT License.
  */
 
+// User Model.
+require('../models/user')();
+var User = mongoose.model('User');
+
 /**
  * TODO: update me.
  */
 module.exports = function(req, res, next) {
-  
-  return next();
   
   // Is id set?
   if (!req.session.userId) {

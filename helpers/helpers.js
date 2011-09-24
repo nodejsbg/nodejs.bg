@@ -21,6 +21,7 @@ module.exports = function(app) {
   
   app.helpers({
     link_to: helpers.link_to,
+    select_tag: helpers.select_tag,
     secret: app.config.admin.secret
   }); 
 

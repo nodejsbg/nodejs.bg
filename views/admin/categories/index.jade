@@ -8,11 +8,11 @@
 table.zebra-striped.list
   tr
     th
-    th Именце
+    th Име
     th
   each category, i in categories
     tr
-      td= i+1
+      td= i + 1 + '.'
       td= category.name
       td
         a.btn.small(href='categories/edit/' + category._id ) Редактирай

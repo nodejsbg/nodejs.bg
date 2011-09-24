@@ -9,11 +9,13 @@ table.zebra-striped.list
   tr
     th
     th Заглавие
+    th Автор
     th
   each post, i in posts
     tr
-      td= i+1
+      td= posts.length - i + '.'
       td= post.title
+      td= post.user_id.username
       td
         a.btn.small(href='posts/edit/' + post._id ) Редактирай
         

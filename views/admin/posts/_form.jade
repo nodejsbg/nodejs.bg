@@ -1,17 +1,22 @@
+- var options = [];
+- categories.forEach(function(category) {
+-  options.push({ value: category._id, text: category.name });
+- });
+
 form.form(action='posts' + (post._id ? '/' + post._id : ''), method='post')
   - if (post._id)
     input(type='hidden', name='_method', value='put')
     
   label Заглавие
-  input.span7.clearfix(type='text', value=post.name, name='post[name]')
+  input.span7.clearfix(type='text', value=post.title, name='post[title]')
+  
+  label Интродукция
+  textarea#summary.summary(name='post[summary]')!=post.summary
   
   label Съдържание
   textarea#editor.editor(name='post[content]')!=post.content
   
   label Категория
-  select(name='post[category_id]')
-    option
-    each category in categories
-      option(value=category._id)= category.name
+  != select_tag('post[category_id]', post.category_id + '',  options)
   
   input.btn.primary(type='submit', value='Запазване')
