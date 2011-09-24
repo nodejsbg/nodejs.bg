@@ -7,7 +7,7 @@
  * Licensed under the MIT License.
  */
  
-// Category Model.
+// Page Model.
 require('../../models/page')();
 var Page = mongoose.model('Page');
 
