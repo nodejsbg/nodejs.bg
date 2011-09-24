@@ -2,5 +2,6 @@
 
 .page-header
   h1 Редактиране на #{user.username}
-  != messages
-  != partial('_form', { user: user })
+
+!= messages
+!= partial('_form', { user: user })

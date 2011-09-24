@@ -8,20 +8,20 @@
  */
 
 /**
- * Module dependencies.
- */
-var validator = require('../lib/validator');
-
-/**
  * Module exports.
  */
 module.exports = function() {
-
+  
+  /**
+   * Module dependencies.
+   */
+  var validator = require('../lib/validator');
+  
   /**
    * Page Model.
    */
   var Page = new mongoose.Schema({
-    'name': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
+    'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
     'content': String
   });
 

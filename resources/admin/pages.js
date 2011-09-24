@@ -7,7 +7,7 @@
  * Licensed under the MIT License.
  */
  
-// Category Model.
+// Page Model.
 require('../../models/page')();
 var Page = mongoose.model('Page');
 
@@ -33,7 +33,7 @@ module.exports = function(app, middlewares) {
     res.render('admin/pages/new');
   });
 
-  // GET /admin/pages/edit
+  // GET /admin/pages/edit/1
   app.get('/' + app.config.admin.secret + '/pages/edit/:id', middlewares, function(req, res) {
     Page.findOne({ _id: req.params.id }, function(err, page) {
       if (err) {
@@ -59,14 +59,15 @@ module.exports = function(app, middlewares) {
 
   // PUT /admin/pages/1
   app.put('/' + app.config.admin.secret + '/pages/:id', middlewares, function(req, res) {
-    Page.update({ _id:  req.params.id}, req.body.page, function(err, count) {
-      // Nothing found?
-      if (err || !count) {
-        req.flash('error', 'Не я намерих тая.');
-        return res.render('admin/pages');
-      }
-      req.flash('success', 'Разцепихме я тая страничка.');
-      res.redirect('/' + app.config.admin.secret + '/pages/edit/' + req.params.id);
+    Page.findById(req.params.id, function(err, page) {
+      page.set(req.body.page).save(function(err) {
+        if (err) {
+          req.flash('error', 'Опа! Пробвай пак.');
+        } else {
+          req.flash('success', 'Страницата е запазена успешно.');
+        }
+        res.redirect('/' + app.config.admin.secret + '/pages/edit/' + req.params.id);
+      });
     });
   });
 

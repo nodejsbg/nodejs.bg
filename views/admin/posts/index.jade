@@ -2,3 +2,26 @@
 
 .page-header
   h1 Публикации
+  
+!= messages  
+
+table.zebra-striped.list
+  tr
+    th
+    th Заглавие
+    th Автор
+    th
+  each post, i in posts
+    tr
+      td= posts.length - i + '.'
+      td= post.title
+      td= post.user_id.name
+      td
+        a.btn.small(href='posts/edit/' + post._id ) Редактирай
+        
+        form.delete(method='post', action='posts/' + post._id)
+          input(type='hidden', name='_method', value='delete')
+          input.danger.btn.small(type='submit', value='Изтриване')
+
+.action
+  a.btn.success(href='posts/new') Добавяне

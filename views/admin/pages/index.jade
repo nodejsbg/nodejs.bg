@@ -1,9 +1,10 @@
 - layout('admin/layout')
 
 .page-header
-  h1 Странички
-  != messages
+  h1 Страници
   
+!= messages  
+
 table.zebra-striped.list
   tr
     th
@@ -11,7 +12,7 @@ table.zebra-striped.list
     th
   each page, i in pages
     tr
-      td= i+1
+      td= i + 1 + '.'
       td= page.name
       td
         a.btn.small(href='pages/edit/' + page._id ) Редактирай

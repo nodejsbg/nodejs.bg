@@ -33,7 +33,7 @@ module.exports = function(app, middlewares) {
     res.render('admin/users/new');
   });
 
-  // GET /admin/users/edit
+  // GET /admin/users/edit/1
   app.get('/' + app.config.admin.secret + '/users/edit/:id', middlewares, function(req, res) {
     User.findOne({ _id: req.params.id }, function(err, user) {
       if (err) {
@@ -50,7 +50,7 @@ module.exports = function(app, middlewares) {
     user.save(function(err) {
       if (err) {
         req.flash('error', 'Опа! Пробвай пак, че потребителското име трябва да е уникално.');
-        return res.render('admin/users/new', { users: req.body.user });
+        return res.render('admin/users/new', { user: req.body.user });
       }
       req.flash('success', 'Добавихме го тоя пич.');
       res.redirect('/' + app.config.admin.secret + '/users');
@@ -60,7 +60,16 @@ module.exports = function(app, middlewares) {
 
   // PUT /admin/users/1
   app.put('/' + app.config.admin.secret + '/users/:id', middlewares, function(req, res) {
-
+    User.findById(req.params.id, function(err, user) {
+      user.set(req.body.user).save(function(err) {
+        if (err) {
+          req.flash('error', 'Опа! Пробвай пак.');
+        } else {
+          req.flash('success', 'Запазихме го тоя пич.');
+        }
+        res.redirect('/' + app.config.admin.secret + '/users/edit/' + req.params.id);
+      });
+    });
   });
 
   // DELETE /admin/users/1
@@ -74,4 +83,5 @@ module.exports = function(app, middlewares) {
       res.redirect('/' + app.config.admin.secret + '/users');
     });
   });
+  
 };

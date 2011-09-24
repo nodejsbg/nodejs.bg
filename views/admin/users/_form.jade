@@ -9,6 +9,6 @@ form.form(action='users' + (user._id ? '/' + user._id : ''), method='post')
   input.span7(type='text', value=user.name, name='user[name]', placeholder='Може и псевдоним.', autocomplete='off')
   
   label Парола
-  input.span7(type='password', name='user[password]', placeholder='Нещо хитро. Поне 5 символа.', autocomplete='off')
+  input.span7(type='password', name='user[passwd]', placeholder='Нещо хитро.', autocomplete='off')
   
   input.btn.primary(type='submit', value='Запазване')

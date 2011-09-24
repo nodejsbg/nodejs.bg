@@ -6,23 +6,16 @@
  * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
  * Licensed under the MIT License.
  */
-
+ 
+ 
 /**
- * Module dependencies.
- */
-var helpers = require('express-helpers');
-
-/**
- * Module exports
+ * Module exports.
  * 
  * @param {Object} app
  */
 module.exports = function(app) {
   
-  app.helpers({
-    link_to: helpers.link_to,
-    select_tag: helpers.select_tag,
-    secret: app.config.admin.secret
-  }); 
-
+  // Admin resources.
+  require('./admin')(app);
+  
 };
