@@ -59,14 +59,15 @@ module.exports = function(app, middlewares) {
 
   // PUT /admin/categories/1
   app.put('/' + app.config.admin.secret + '/categories/:id', middlewares, function(req, res) {
-    Category.update({ _id:  req.params.id}, req.body.category, function(err, count) {
-      // Nothing found?
-      if (err || !count) {
-        req.flash('error', 'Не я намерих тая.');
-        return res.render('admin/categories');
-      }
-      req.flash('success', 'Разцепихме я тая категория.');
-      res.redirect('/' + app.config.admin.secret + '/categories/edit/' + req.params.id);
+    Category.findById(req.params.id, function(err, category) {
+      category.set(req.body.category).save(function(err) {
+        if (err) {
+          req.flash('error', 'Опа! Пробвай пак.');
+        } else {
+          req.flash('success', 'Категорията е запазена успешно.');
+        }
+        res.redirect('/' + app.config.admin.secret + '/categories/edit/' + req.params.id);
+      });
     });
   });
 

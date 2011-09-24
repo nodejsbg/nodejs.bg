@@ -82,14 +82,15 @@ module.exports = function(app, middlewares) {
 
   // PUT /admin/posts/1
   app.put('/' + app.config.admin.secret + '/posts/:id', middlewares, function(req, res) {
-    Post.update({ _id:  req.params.id}, req.body.post, function(err, count) {
-      // Nothing found?
-      if (err || !count) {
-        req.flash('error', 'Не я намерих тая.');
-        return res.render('admin/posts');
-      }
-      req.flash('success', 'Разцепихме я тая страничка.');
-      res.redirect('/' + app.config.admin.secret + '/posts/edit/' + req.params.id);
+    Post.findById(req.params.id, function(err, post) {
+      post.set(req.body.post).save(function(err) {
+        if (err) {
+          req.flash('error', 'Опа! Пробвай пак.');
+        } else {
+          req.flash('success', 'Запазихме страницата.');
+        }
+        res.redirect('/' + app.config.admin.secret + '/posts/edit/' + req.params.id);
+      });
     });
   });
 

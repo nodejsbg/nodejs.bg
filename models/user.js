@@ -22,14 +22,18 @@ module.exports = function() {
    * User Model.
    */
   var User = new mongoose.Schema({
-    'username': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
+    'username': { 
+      type: String, 
+      validate: new RegExp('^\d*[a-zA-Z][a-zA-Z0-9]*$'), 
+      index: { unique: true } 
+    },
     'password': String,
     'name': String,
     'salt': String
   });
   
   /**
-   * Virtual field password.
+   * Virtual field passwd.
    */
   User.virtual('passwd')
     .set(function(password) { 
@@ -67,6 +71,9 @@ module.exports = function() {
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
   });
   
+  /**
+   * @TODO
+   */
   User.pre('save', function(next) {
     if (this.isNew) {
       this.salt = this.makeSalt();
@@ -81,7 +88,6 @@ module.exports = function() {
     this.password = this.hash(this.passwd);
     
     next();
-    
   });
 
   mongoose.model('User', User);
