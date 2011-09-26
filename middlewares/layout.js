@@ -21,16 +21,18 @@ var Category = require('../models/category');
 module.exports = function(req, res, next) {
   
   // Navigation.
-  Page.find({}, function(err, pages) {
-    res.local('pages', pages);
+  Page.find({})
+    .sort('position', 1)
+    .run(function(err, pages) {
+      res.local('pages', pages);
     
-    // Categories.
-    Category.find({})
-      .sort('name', 1)
-      .run(function(err, categories) {
-        res.local('categories', categories);
-        next();
-    });
+      // Categories.
+      Category.find({})
+        .sort('name', 1)
+        .run(function(err, categories) {
+          res.local('categories', categories);
+          next();
+      });
     
   });
 };

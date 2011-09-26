@@ -8,6 +8,9 @@ form.form(action='pages' + (page._id ? '/' + page._id : ''), method='post')
   label Permlink
   input#permlink.span7.clearfix(type='text', value=page.permlink, name='page[permlink]')
   
+  label Позиция
+  input.span7.clearfix(type='text', value=page.position, name='page[position]')
+  
   textarea#editor.editor(name='page[content]')!=page.content
   
   input.btn.primary(type='submit', value='Запазване')

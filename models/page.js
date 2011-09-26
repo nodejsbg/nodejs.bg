@@ -18,6 +18,7 @@ var validator = require('../lib/validator');
 var Page = new mongoose.Schema({
   'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
   'permlink': String,
+  'position': Number,
   'content': String
 });
 
