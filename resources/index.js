@@ -14,34 +14,18 @@
  */
 module.exports = function(app) {
   
-  // Pages Model.
-  var Page = require('../models/page');
-  var Category = require('../models/category');
-  
-  // Sets pages for the navigation.
-  // TODO: fix me
-  app.get('*', function(req, res, next) {
-    Page.find({}, function(err, pages) {
-      res.local('pages', pages);
-      Category.find({})
-        .sort('name', 1)
-        .run(function(err, categories) {
-          res.local('categories', categories);
-          next();
-      });
-    });
-  });
+  var common = [require('../middlewares/layout')];
   
   // Posts.
-  require('./posts')(app);
+  require('./posts')(app, common);
   
   // Pages.
-  require('./pages')(app);
+  require('./pages')(app, common);
   
   // Categories.
-  require('./pages')(app);
+  require('./pages')(app, common);
   
   // Admin resources.
-  require('./admin')(app);
+  require('./admin')(app, common);
   
 };

@@ -12,13 +12,13 @@
  * 
  * @param {Object} app HTTPServer.
  */
-module.exports = function(app) {
+module.exports = function(app, middlewares) {
   
   // Post model.
   var Post = require('../models/post');
   
   // Home page.
-  app.get('/', function(req, res) {
+  app.get('/', middlewares, function(req, res) {
     // Current page.
     var page = req.param('page') || 0; 
     
@@ -27,7 +27,7 @@ module.exports = function(app) {
     
     Post.count({}, function(err, count) {
       Post.find({})
-        .sort('created_at', 'descending')
+        .sort('created_at', -1)
         .populate('user_id')
         .populate('category_id')
         .skip(page * perPage)
