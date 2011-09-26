@@ -13,21 +13,36 @@
  * @param {Object} app HTTPServer.
  */
 module.exports = function(app) {
-
+  
+  // Post model.
+  var Post = require('../models/post');
+  
   // Home page.
   app.get('/', function(req, res) {
-    Post.find()
-    .sort('created_at', 'descending')
-    .populate('user_id')
-    .run(function(err, posts) {
-      res.render('posts/index', {
-        posts: posts
-      });
+    // Current page.
+    var page = req.param('page') || 0; 
+    
+    // Results per page.
+    var perPage = 10; 
+    
+    Post.count({}, function(err, count) {
+      Post.find({})
+        .sort('created_at', 'descending')
+        .populate('user_id')
+        .populate('category_id')
+        .skip(page * perPage)
+        .limit(perPage)
+        .run(function(err, posts) { 
+          res.render('posts/index', {
+            posts: posts,
+            count: count
+          });
+        });
     });
   });
   
   // Post single.
-  app.get('/post/:permlink', middlewares, function(req, res) {
+  app.get('/post/:permlink', function(req, res) {
     
   });
 

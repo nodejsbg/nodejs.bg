@@ -17,6 +17,7 @@ var validator = require('../lib/validator');
  */
 var Category = new mongoose.Schema({
   'name': { type: String, validate: [validator.validatePresenceOf, 'empty'], index: { unique: true } },
+  'permlink': String
 });
 
 mongoose.model('Category', Category);

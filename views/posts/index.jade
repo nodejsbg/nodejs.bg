@@ -1,2 +1,23 @@
-h1= title
-p Welcome to #{title}
+- locals.title = 'Начало'
+each post in posts
+  #post.hentry
+    .clearfix
+      .entry-top
+        h2.entry-title
+          a(href='/post/' + post.permlink)= post.title
+          
+        .entry-meta.entry-header
+          span.author 
+            | От #{post.user_id.name} 
+            | на #{format_date(post.created_at)} в
+            a(href='/category/' + post.category_id.permlink)= post.category_id.name
+            
+    .entry-seperator
+    .entry-content
+      p!= post.summary
+    
+.navigation.page-navigation
+  .nav-next
+    a(href='') ← По-стари
+  .nav-previous
+    a(href='') По-нови →

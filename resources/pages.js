@@ -14,9 +14,19 @@
  */
 module.exports = function(app) {
 
+  // Page Model.
+  var Page = require('../models/page');
+
   // Page.
   app.get('/page/:permlink', function(req, res) {
-    
+    Page.findOne({ permlink: req.params.permlink }, function(err, page) {
+      if (err || !page) {
+        res.send(404);
+      }
+      res.render('pages/index', {
+        page: page
+      });
+    });
   });
 
 };
