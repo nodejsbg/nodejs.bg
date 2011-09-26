@@ -12,13 +12,13 @@
  * 
  * @param {Object} app HTTPServer.
  */
-module.exports = function(app) {
+module.exports = function(app, middlewares) {
 
   // Page Model.
   var Page = require('../models/page');
 
   // Page.
-  app.get('/page/:permlink', function(req, res) {
+  app.get('/page/:permlink', middlewares, function(req, res) {
     Page.findOne({ permlink: req.params.permlink }, function(err, page) {
       if (err || !page) {
         res.send(404);

@@ -12,11 +12,27 @@
  * 
  * @param {Object} app HTTPServer.
  */
-module.exports = function(app) {
-
+module.exports = function(app, middlewares) {
+  
+  var Category = require('../models/category');
+  var Post = require('../models/post');
+  
   // Category.
-  app.get('/category/:permlink', function(req, res) {
+  app.get('/category/:permlink', middlewares, function(req, res) {
     
+    Category.findOne({ permlink: req.params.permlink }, function(err, category) {
+      if (err || !category) {
+        return res.send(404);
+      }
+      
+      Post.find({ category_id: category._id })
+        .sort('created_at', -1)
+        .run(function(err, posts) { 
+          res.render('categories/view', {
+            posts: posts,
+            category: category
+          });
+        });
+    });
   });
-
 };

@@ -23,7 +23,7 @@ module.exports = function(app) {
   require('./pages')(app, common);
   
   // Categories.
-  require('./pages')(app, common);
+  require('./categories')(app, common);
   
   // Admin resources.
   require('./admin')(app, common);
