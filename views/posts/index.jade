@@ -1,3 +1,4 @@
+- var older, newer, href;
 - locals.title = 'Начало'
 
 each post in posts
@@ -16,9 +17,17 @@ each post in posts
     .entry-seperator
     .entry-content
       p!= post.summary
+      - if (strip_tags(post.content))
+        a(href='/post/' + post.permlink) Прочети още &raquo;
     
 .navigation.page-navigation
   .nav-next
-    a(href='') ← По-стари
+    - if (currentPage < totalPages)
+      - older = currentPage + 1;
+      a(href='/?page=' + older) ← По-стари
+  
   .nav-previous
-    a(href='') По-нови →
+    - if (currentPage > 1)
+      - newer = currentPage - 1
+      - href = (newer == 1) ? '/' : '/?page=' + newer
+      a(href=href) По-нови →

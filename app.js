@@ -21,11 +21,8 @@ var config = app.config = require('./config/config');
 // Database configurations.
 var db = require('./config/db');
 
-// Bootstrap.
+// Bootstrap and setup.
 require('./config/boot.js')(app, express);
-
-// Environments.
-require('./config/env.js')(app, express);
 
 // Database connection.
 mongoose.connect((new UriBuilder(db[app.settings.env])).toString());
