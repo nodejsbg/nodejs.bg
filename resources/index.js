@@ -23,9 +23,11 @@ module.exports = function(app) {
   app.get('*', function(req, res, next) {
     Page.find({}, function(err, pages) {
       res.local('pages', pages);
-      Category.find({}, function(err, categories) {
-        res.local('categories', categories);
-        next();
+      Category.find({})
+        .sort('name', 1)
+        .run(function(err, categories) {
+          res.local('categories', categories);
+          next();
       });
     });
   });
