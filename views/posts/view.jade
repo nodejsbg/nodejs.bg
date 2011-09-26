@@ -1,0 +1,20 @@
+- locals.title = post.title
+
+#post.hentry
+  .clearfix
+    .entry-top
+      h2.entry-title
+        = post.title
+        
+      .entry-meta.entry-header
+        span.author 
+          | От #{post.user_id.name} 
+          | на #{format_date(post.created_at)} в
+          a(href='/category/' + post.category_id.permlink)= post.category_id.name
+          
+  .entry-seperator
+  .entry-content
+    p!= post.content
+  
+  #disqus_thread
+  script(type='text/javascript', src='/js/libs/disqus.js');

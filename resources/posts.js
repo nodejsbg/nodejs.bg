@@ -42,8 +42,19 @@ module.exports = function(app, middlewares) {
   });
   
   // Post single.
-  app.get('/post/:permlink', function(req, res) {
-    
+  app.get('/post/:permlink', middlewares, function(req, res) {
+    Post.findOne({ permlink: req.params.permlink })
+    .populate('user_id')
+    .populate('category_id')
+    .run(function(err, post) {
+      if (err || !post) {
+        return res.send(404);
+      }
+      
+      res.render('posts/view', {
+        post: post
+      });
+    });
   });
-
+  
 };

@@ -14,6 +14,7 @@
  */
 module.exports = function(app, middlewares) {
   
+  // Used models.
   var Category = require('../models/category');
   var Post = require('../models/post');
   
@@ -34,5 +35,6 @@ module.exports = function(app, middlewares) {
           });
         });
     });
+    
   });
 };
