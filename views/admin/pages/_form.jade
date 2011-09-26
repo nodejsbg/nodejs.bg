@@ -3,7 +3,13 @@ form.form(action='pages' + (page._id ? '/' + page._id : ''), method='post')
     input(type='hidden', name='_method', value='put')
     
   label Име
-  input.span7.clearfix(type='text', value=page.name, name='page[name]', placeholder='Петър плет плете, по три пръта преплита...')
+  input#src.span7.clearfix(type='text', value=page.name, name='page[name]', placeholder='Петър плет плете, по три пръта преплита...')
+  
+  label Permlink
+  input#permlink.span7.clearfix(type='text', value=page.permlink, name='page[permlink]')
+  
+  label Позиция
+  input.span7.clearfix(type='text', value=page.position, name='page[position]')
   
   textarea#editor.editor(name='page[content]')!=page.content
   

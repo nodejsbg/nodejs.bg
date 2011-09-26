@@ -7,15 +7,25 @@
  * Licensed under the MIT License.
  */
  
- 
 /**
  * Module exports.
  * 
- * @param {Object} app
+ * @param {Object} app HTTPServer.
  */
 module.exports = function(app) {
   
+  var common = [require('../middlewares/layout')];
+  
+  // Posts.
+  require('./posts')(app, common);
+  
+  // Pages.
+  require('./pages')(app, common);
+  
+  // Categories.
+  require('./categories')(app, common);
+  
   // Admin resources.
-  require('./admin')(app);
+  require('./admin')(app, common);
   
 };

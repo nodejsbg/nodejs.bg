@@ -14,7 +14,7 @@ var Category = require('../../models/category');
  * Module exports.
  * 
  * @param {Object} app
- * @param {Array} middlewares
+ * @param {Array} middlewares Middlewares for the admin.
  */
 module.exports = function(app, middlewares) {
 

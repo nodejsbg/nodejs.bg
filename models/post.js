@@ -17,9 +17,10 @@ var validator = require('../lib/validator');
  */
 var Post = new mongoose.Schema({
   'title': { type: String, validate: [validator.validatePresenceOf, 'empty']},
+  'permlink': String,
   'summary': String,
   'content': String,
-  'category_id': mongoose.Schema.ObjectId,
+  'category_id': { type: mongoose.Schema.ObjectId, ref: 'Category' },
   'user_id': { type: mongoose.Schema.ObjectId, ref: 'User' },
   'created_at': { type: Date, default: Date.now }
 });

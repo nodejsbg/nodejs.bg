@@ -8,7 +8,10 @@ form.form(action='posts' + (post._id ? '/' + post._id : ''), method='post')
     input(type='hidden', name='_method', value='put')
     
   label Заглавие
-  input.span7.clearfix(type='text', value=post.title, name='post[title]')
+  input#src.span7.clearfix(type='text', value=post.title, name='post[title]')
+  
+  label Permlink
+  input#permlink.span7.clearfix(type='text', value=post.permlink, name='post[permlink]')
   
   label Интродукция
   textarea#summary.summary(name='post[summary]')!=post.summary

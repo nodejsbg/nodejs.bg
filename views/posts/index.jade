@@ -1,2 +1,33 @@
-h1= title
-p Welcome to #{title}
+- var older, newer, href;
+- locals.title = 'Начало'
+
+each post in posts
+  #post.hentry
+    .clearfix
+      .entry-top
+        h2.entry-title
+          a(href='/post/' + post.permlink)= post.title
+          
+        .entry-meta.entry-header
+          span.author 
+            | От #{post.user_id.name} 
+            | на #{format_date(post.created_at)} в
+            a(href='/category/' + post.category_id.permlink)= post.category_id.name
+            
+    .entry-seperator
+    .entry-content
+      p!= post.summary
+      - if (strip_tags(post.content))
+        a(href='/post/' + post.permlink) Прочети още &raquo;
+    
+.navigation.page-navigation
+  .nav-next
+    - if (currentPage < totalPages)
+      - older = currentPage + 1;
+      a(href='/?page=' + older) ← По-стари
+  
+  .nav-previous
+    - if (currentPage > 1)
+      - newer = currentPage - 1
+      - href = (newer == 1) ? '/' : '/?page=' + newer
+      a(href=href) По-нови →

@@ -16,8 +16,10 @@ var validator = require('../lib/validator');
  * Page Model.
  */
 var Page = new mongoose.Schema({
- 'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
- 'content': String
+  'name': { type: String, validate: [validator.validatePresenceOf, 'empty'] },
+  'permlink': String,
+  'position': Number,
+  'content': String
 });
 
 // Defines the model.

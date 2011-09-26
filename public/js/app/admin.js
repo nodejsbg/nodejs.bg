@@ -32,4 +32,15 @@ $(function() {
     }
   });
   
+  // Permlinks.
+  if ($('#src').length) {
+    $('#src').slugIt({ 
+      output: '#permlink',
+      map: {
+        'ъ':'u', 
+        'Ъ':'U'
+      }
+    });
+  }
+  
 });

@@ -24,8 +24,29 @@ module.exports = function(app, express) {
   // Root path.
   var root = path.dirname(__dirname);
   
+  // Development.
+   app.configure('development', function() {
+     app.use(express.errorHandler({
+       dumpExceptions: true,
+       showStack: true
+     }));
+     // app.use(express.logger({ format: '\x1b[1m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }));
+   });
+
+   // Production.
+   app.configure('production', function() {
+     app.use(express.errorHandler());
+
+     // Save me!
+     process.on('uncaughtException', function(err) {
+       console.log( " UNCAUGHT EXCEPTION " );
+       console.log( "[Inside 'uncaughtException' event] " + err.stack || err.message );
+     });
+
+   });
+  
   // Configurations.
-  app.configure(function(){
+  app.configure(function() {
     app.set('views', root + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());

@@ -9,11 +9,13 @@ table.zebra-striped.list
   tr
     th
     th Име
+    th Подредба
     th
   each page, i in pages
     tr
       td= i + 1 + '.'
       td= page.name
+      td= page.position
       td
         a.btn.small(href='pages/edit/' + page._id ) Редактирай
         

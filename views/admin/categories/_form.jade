@@ -3,6 +3,9 @@ form.form(action='categories' + (category._id ? '/' + category._id : ''), method
     input(type='hidden', name='_method', value='put')
     
   label Име
-  input.span7(type='text', value=category.name, name='category[name]', placeholder='Вафли с локум.')
+  input#src.span7(type='text', value=category.name, name='category[name]', placeholder='Вафли с локум.')
+  
+  label Permlink
+  input#permlink.span7.clearfix(type='text', value=category.permlink, name='category[permlink]')
   
   input.btn.primary(type='submit', value='Запазване')
