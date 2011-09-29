@@ -19,7 +19,6 @@ module.exports = function(app, express) {
    * Module dependencies.
    */
   var path = require('path');
-  var RedisStore = require('connect-redis')(express);
 
   // Root path.
   var root = path.dirname(__dirname);
@@ -51,7 +50,7 @@ module.exports = function(app, express) {
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
     app.use(express.cookieParser());
-    app.use(express.session({ secret: app.config.session.secret, store: new RedisStore }));
+    app.use(express.session({ secret: app.config.session.secret }));
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(root + '/public'));
