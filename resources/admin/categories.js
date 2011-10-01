@@ -51,7 +51,7 @@ module.exports = function(app, middlewares) {
         req.flash('error', 'Не се получи! Опитай отново.');
         return res.render('admin/categories/new', { category: req.body.category });
       }
-      req.flash('success', 'Добавихме нова категория.');
+      req.flash('success', 'Категорията е добавена успешно.');
       res.redirect('/' + app.config.admin.secret + '/categories');
     });
   });
