@@ -14,29 +14,29 @@ This is the code repository for nodejs.bg
 
   * [nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
   * [NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
-  * [Redis](http://redis.io/) - You can use Redis for persistent sessions storage
+  * [Redis](http://redis.io/) - You can use Redis for persistent sessions storage.
 
-1. Get the code:
+2. Get the code:
 
   $ git clone git@github.com:nodejsbg/nodejs.bg.git
 
-1. Install dependencies:
+3. Install dependencies:
   
   $ npm install
   
-1. Rename config/config.example.js to config.js && rename config/db.example.js to db.js
+4. Rename config/config.example.js to config.js && rename config/db.example.js to db.js
 
-1. Change the session secret key in config/config.js.
+5. Change the session secret key in config/config.js.
 
-1. Update the database configurations (config/db.js).
+6. Update the database configurations (config/db.js).
 
-1. Fire up the server:
+7. Fire up the server:
 
   $ node app.js
   
-1. Go to http://localhost:6969
+8. Go to http://localhost:6969
 
-1. Win!
+9. Win!
 
 ## TODO list
 
