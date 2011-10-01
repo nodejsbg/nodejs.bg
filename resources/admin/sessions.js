@@ -30,7 +30,7 @@ module.exports = function(app, middlewares) {
     User.findOne({ username: user.username }, function(err, result) {
       // Checks username and passwords.
       if (!result || !result.authenticate(user.password)) {
-        req.flash('error', 'Опа. Не те познавам.');
+        req.flash('error', 'Не те познавам. Кой си ти?');
 
         return res.redirect('/' + app.config.admin.secret);
       }

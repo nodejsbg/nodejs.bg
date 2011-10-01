@@ -47,7 +47,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/posts/edit/:id', middlewares, function(req, res) {
     Post.findOne({ _id: req.params.id }, function(err, post) {
       if (err) {
-        req.flash('error', 'Опа. Нещо тая страничка липсва.');
+        req.flash('error', 'Публикацията не беше намерена.');
         return res.redirect('/' + app.config.admin.secret + '/posts');
       }
       Category.find({}, function(err, categories) {
@@ -63,7 +63,7 @@ module.exports = function(app, middlewares) {
     
     post.save(function(err) {
       if (err) {
-        req.flash('error', 'Опа! Пробвай пак.');
+        req.flash('error', 'Не се получи! Опитай отново.');
         Category.find({}, function(err, categories) {
           res.render('admin/posts/new', { 
             post: req.body.post, 
@@ -72,7 +72,7 @@ module.exports = function(app, middlewares) {
         });
         return;
       }
-      req.flash('success', 'Добавихме нова страничка.');
+      req.flash('success', 'Публикацията е добавена успешно.');
       res.redirect('/' + app.config.admin.secret + '/posts');
     });
   });
@@ -82,9 +82,9 @@ module.exports = function(app, middlewares) {
     Post.findById(req.params.id, function(err, post) {
       post.set(req.body.post).save(function(err) {
         if (err) {
-          req.flash('error', 'Опа! Пробвай пак.');
+          req.flash('error', 'Не се получи! Опитай отново.');
         } else {
-          req.flash('success', 'Запазихме страницата.');
+          req.flash('success', 'Публикацията е запазена успешно.');
         }
         res.redirect('/' + app.config.admin.secret + '/posts/edit/' + req.params.id);
       });
@@ -95,9 +95,9 @@ module.exports = function(app, middlewares) {
   app.del('/' + app.config.admin.secret + '/posts/:id', middlewares, function(req, res) {
     Post.remove({ _id: req.params.id }, function(err, count) {
       if (count) {
-        req.flash('success', 'Изтрих я.');
+        req.flash('success', 'Успешно изтриване.');
       } else {
-        req.flash('error', 'Не се получи.');
+        req.flash('error', 'Не се получи! Опитай отново.');
       }
       res.redirect('/' + app.config.admin.secret + '/posts');
     });

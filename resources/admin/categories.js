@@ -36,7 +36,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/categories/edit/:id', middlewares, function(req, res) {
     Category.findOne({ _id: req.params.id }, function(err, category) {
       if (err) {
-        req.flash('error', 'Опа. Нещо тая категорийка липсва.');
+        req.flash('error', 'Категорията не беше намерена.');
         return res.redirect('/' + app.config.admin.secret + '/categories');
       }
       res.render('admin/categories/edit', { category: category });
@@ -48,10 +48,10 @@ module.exports = function(app, middlewares) {
     var category = new Category(req.body.category);
     category.save(function(err) {
       if (err) {
-        req.flash('error', 'Опа! Пробвай пак.');
+        req.flash('error', 'Не се получи! Опитай отново.');
         return res.render('admin/categories/new', { category: req.body.category });
       }
-      req.flash('success', 'Добавихме нова категория.');
+      req.flash('success', 'Категорията е добавена успешно.');
       res.redirect('/' + app.config.admin.secret + '/categories');
     });
   });
@@ -61,7 +61,7 @@ module.exports = function(app, middlewares) {
     Category.findById(req.params.id, function(err, category) {
       category.set(req.body.category).save(function(err) {
         if (err) {
-          req.flash('error', 'Опа! Пробвай пак.');
+          req.flash('error', 'Не се получи! Опитай отново.');
         } else {
           req.flash('success', 'Категорията е запазена успешно.');
         }
@@ -74,9 +74,9 @@ module.exports = function(app, middlewares) {
   app.del('/' + app.config.admin.secret + '/categories/:id', middlewares, function(req, res) {
     Category.remove({ _id: req.params.id }, function(err, count) {
       if (count) {
-        req.flash('success', 'Изтрих я.');
+        req.flash('success', 'Успешно изтриване.');
       } else {
-        req.flash('error', 'Не се получи.');
+        req.flash('error', 'Не се получи! Опитай отново.');
       }
       res.redirect('/' + app.config.admin.secret + '/categories');
     });

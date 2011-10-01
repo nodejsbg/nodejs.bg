@@ -36,7 +36,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/users/edit/:id', middlewares, function(req, res) {
     User.findOne({ _id: req.params.id }, function(err, user) {
       if (err) {
-        req.flash('error', 'Тоя не го знам.');
+        req.flash('error', 'Потребителят не беше намерен.');
         return res.redirect('/' + app.config.admin.secret + '/users');
       }
       res.render('admin/users/edit', { user: user });
@@ -48,10 +48,10 @@ module.exports = function(app, middlewares) {
     var user = new User(req.body.user);
     user.save(function(err) {
       if (err) {
-        req.flash('error', 'Опа! Пробвай пак, че потребителското име трябва да е уникално.');
+        req.flash('error', 'Не се получи! Опитай отново. Да знаеш, че потребителското име трябва да е уникално.');
         return res.render('admin/users/new', { user: req.body.user });
       }
-      req.flash('success', 'Добавихме го тоя пич.');
+      req.flash('success', 'Потребителят е добавен успешно.');
       res.redirect('/' + app.config.admin.secret + '/users');
     });
 
@@ -62,9 +62,9 @@ module.exports = function(app, middlewares) {
     User.findById(req.params.id, function(err, user) {
       user.set(req.body.user).save(function(err) {
         if (err) {
-          req.flash('error', 'Опа! Пробвай пак.');
+          req.flash('error', 'Не се получи! Опитай отново.');
         } else {
-          req.flash('success', 'Запазихме го тоя пич.');
+          req.flash('success', 'Потребителят е запазен успешно.');
         }
         res.redirect('/' + app.config.admin.secret + '/users/edit/' + req.params.id);
       });
@@ -75,7 +75,7 @@ module.exports = function(app, middlewares) {
   app.del('/' + app.config.admin.secret + '/users/:id', middlewares, function(req, res) {
     User.remove({ _id: req.params.id }, function(err, count) {
       if (count) {
-        req.flash('success', 'Изтрих го тоя пич.');
+        req.flash('success', 'Успешно изтриване.');
       } else {
         req.flash('error', 'Не се получи, може да е безсмъртен.');
       }
