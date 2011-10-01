@@ -36,7 +36,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/pages/edit/:id', middlewares, function(req, res) {
     Page.findOne({ _id: req.params.id }, function(err, page) {
       if (err) {
-        req.flash('error', 'Опа. Нещо тая страничка липсва.');
+        req.flash('error', 'Страницата не беше намерена.');
         return res.redirect('/' + app.config.admin.secret + '/pages');
       }
       res.render('admin/pages/edit', { page: page });
@@ -48,10 +48,10 @@ module.exports = function(app, middlewares) {
     var page = new Page(req.body.page);
     page.save(function(err) {
       if (err) {
-        req.flash('error', 'Опа! Пробвай пак.');
+        req.flash('error', 'Не се получи! Опитай отново.');
         return res.render('admin/pages/new', { page: req.body.page });
       }
-      req.flash('success', 'Добавихме нова страничка.');
+      req.flash('success', 'Страницата е добавена успешно.');
       res.redirect('/' + app.config.admin.secret + '/pages');
     });
   });
@@ -61,7 +61,7 @@ module.exports = function(app, middlewares) {
     Page.findById(req.params.id, function(err, page) {
       page.set(req.body.page).save(function(err) {
         if (err) {
-          req.flash('error', 'Опа! Пробвай пак.');
+          req.flash('error', 'Не се получи! Опитай отново.');
         } else {
           req.flash('success', 'Страницата е запазена успешно.');
         }
@@ -76,7 +76,7 @@ module.exports = function(app, middlewares) {
       if (count) {
         req.flash('success', 'Изтрих я.');
       } else {
-        req.flash('error', 'Не се получи.');
+        req.flash('error', 'Не се получи! Опитай отново.');
       }
       res.redirect('/' + app.config.admin.secret + '/pages');
     });
