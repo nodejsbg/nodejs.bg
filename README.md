@@ -38,6 +38,11 @@ This is the code repository for nodejs.bg
 
 1. Win!
 
+## TODO list
+
+* Test cases
+* Better environment handling
+
 ## Contributing
 
 There are many ways to contribute depending on your specific interests.
