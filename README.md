@@ -6,23 +6,23 @@ This is the code repository for nodejs.bg
 
 1. Install and configure Node.js, NPM and MongoDB:
 
-  * [Node.js](http://nodejs.org/)
-  * [NPM](http://npmjs.org/)
-  * [MongoDB](http://www.mongodb.org/)
+	* [Node.js](http://nodejs.org/)
+	* [NPM](http://npmjs.org/)
+	* [MongoDB](http://www.mongodb.org/)
 
-  Optional:
+	Optional:
 
-  * [nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
-  * [NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
-  * [Redis](http://redis.io/) - You can use Redis for persistent sessions storage.
+	* [nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
+	* [NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
+	* [Redis](http://redis.io/) - You can use Redis for persistent sessions storage.
 
 2. Get the code:
 
-  $ git clone git@github.com:nodejsbg/nodejs.bg.git
+	$ git clone git@github.com:nodejsbg/nodejs.bg.git
 
 3. Install dependencies:
-  
-  $ npm install
+
+	$ npm install
   
 4. Rename config/config.example.js to config.js && rename config/db.example.js to db.js
 
@@ -32,7 +32,7 @@ This is the code repository for nodejs.bg
 
 7. Fire up the server:
 
-  $ node app.js
+	$ node app.js
   
 8. Go to http://localhost:6969
 
