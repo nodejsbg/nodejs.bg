@@ -2,21 +2,56 @@
 
 This is the code repository for nodejs.bg
 
-# Getting Started
+## Getting Started
 
-* Install node
-* Install npm
-* Install the app
+1. Install and configure Node.js, NPM and MongoDB:
 
-# Dependencies
+  * [Node.js](http://nodejs.org/)
+  * [NPM](http://npmjs.org/)
+  * [MongoDB](http://www.mongodb.org/)
 
-* Express
-* Jade
-* Less
-* Mongoose
-* Should
+  Optional:
 
-# License
+  * [nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
+  * [NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
+  * [Redis](http://redis.io/) - You can use Redis for persistent sessions storage
+
+1. Get the code:
+
+  $ git clone git@github.com:nodejsbg/nodejs.bg.git
+
+1. Install dependencies:
+  
+  $ npm install
+  
+1. Rename config/config.example.js to config.js && rename config/db.example.js to db.js
+
+1. Change the session secret key in config/config.js.
+
+1. Update the database configurations (config/db.js).
+
+1. Fire up the server:
+
+  $ node app.js
+  
+1. Go to http://localhost:6969
+
+1. Win!
+
+## TODO list
+
+* Test cases
+* Better environment handling
+
+## Contributing
+
+There are many ways to contribute depending on your specific interests.
+The only thing you need is a desire to help improve the site.
+
+In order to keep the contributing as easy is possible we use the Vincent Driessen's [branching model](http://nvie.com/git-model).
+Please make sure you get familiar with [git-flow](https://github.com/nvie/gitflow).
+
+## License
 
 (The MIT License)
 
