@@ -1,6 +1,55 @@
-!!!
-html
+!!! 5
+html(dir='ltr', lang='en-US')
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title!= title + ' - Node.js Българска Потребителска Група'
+    link(rel='stylesheet', href='/css/style.css', type='text/css', media='screen')
+    
+  body.home.blog.unknown
+    #container
+      #header
+        #header-top.clearfix
+          #logo
+            a(href='/')
+              img(src='/img/logo.png')
+          #primary-nav
+            .menu
+              ul
+                each page in pages
+                  li.page_item
+                    a(href='/page/' + page.permlink)= page.name
+                  
+      #content.clearfix0
+        h1.page-title Node.js Българска Потребителска Група
+        #blog-bg.clearfix
+          #primary.hfeed
+            !=body
+          #sidebar.aside
+            .widget
+              h3.widget-title Категории
+              ul
+                each category in categories
+                  li.cat-item.cat-item-3
+                    a(href='/category/' + category.permlink)= category.name
+                    
+              h3.widget-title Полезни връзки
+              ul
+                li.cat-item.cat-item-3
+                  a(href='https://github.com/nodejsbg') GitHub профил
+                li.cat-item.cat-item-3
+                  a(href='http://nodejs.org/') Node.js
+                li.cat-item.cat-item-3
+                  a(href='http://npmjs.org/') NPM
+                li.cat-item.cat-item-3
+                  a(href='https://github.com/creationix/nvm') NVM
+                li.cat-item.cat-item-3
+                  a(href='http://expressjs.com/') Express
+                li.cat-item.cat-item-3
+                  a(href='http://nodeguide.com/') Node.js Guide
+                li.cat-item.cat-item-3
+                  a(href='http://nodetuts.com/') Node Tuts
+      .footer
+        p
+          | &copy; 2011 - Node.js Българска Потребителска Група.
+          br
+          a(href='https://github.com/nodejsbg/nodejs.bg') Този сайт е с отворен код.

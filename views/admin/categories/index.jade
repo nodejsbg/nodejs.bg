@@ -1,0 +1,25 @@
+- layout('admin/layout')
+
+.page-header
+  h1 Категории
+  
+!= messages
+  
+table.zebra-striped.list
+  tr
+    th
+    th Име
+    th
+  each category, i in categories
+    tr
+      td= i + 1 + '.'
+      td= category.name
+      td
+        a.btn.small(href='categories/edit/' + category._id ) Редактирай
+        
+        form.delete(method='post', action='categories/' + category._id)
+          input(type='hidden', name='_method', value='delete')
+          input.danger.btn.small(type='submit', value='Изтриване')
+
+.action
+  a.btn.success(href='categories/new') Добавяне

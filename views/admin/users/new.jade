@@ -1,0 +1,8 @@
+- layout('admin/layout')
+- var user = user || {};
+
+.page-header
+  h1 Добавяне на потребител
+  
+!= messages
+!= partial('_form', { user: user})

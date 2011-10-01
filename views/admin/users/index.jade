@@ -1,0 +1,27 @@
+- layout('admin/layout')
+
+.page-header
+  h1 Потребители
+
+!= messages
+
+table.zebra-striped.list
+  tr
+    th
+    th Потребителско име
+    th Име
+    th
+  each user, i in users
+    tr
+      td= i + 1 + '.'
+      td= user.username
+      td= user.full_name
+      td
+        a.btn.small(href='users/edit/' + user._id ) Редактирай
+        
+        form.delete(method='post', action='users/' + user._id)
+          input(type='hidden', name='_method', value='delete')
+          input.danger.btn.small(type='submit', value='Изтриване')
+
+.action
+  a.btn.success(href='users/new') Добавяне

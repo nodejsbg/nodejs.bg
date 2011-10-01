@@ -1,0 +1,11 @@
+- locals.title = 'Категория ' + category.name
+
+.entry-content
+  .archive-lists
+    h2.entry-title Категория: #{category.name}
+    - if (!posts.length)
+      | Тази категория е празна.
+    ul
+      each post in posts
+        li 
+          a(href='/post/' + post.permlink)= post.title

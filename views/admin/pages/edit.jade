@@ -1,0 +1,7 @@
+- layout('admin/layout')
+
+.page-header
+  h1 Редактиране на #{page.name}
+
+!= messages
+!= partial('_form', { page: page })

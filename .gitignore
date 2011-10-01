@@ -1,4 +1,7 @@
 # Node
+config/db.js
+config/config.js
+_psd
 .monitor
 node_modules
 

@@ -1,0 +1,16 @@
+- layout('')
+!!!5
+html.login
+  head
+    title Вход - Контролна кула - nodejs.bg
+    link(rel='shortcut icon', type='image/x-icon', href='/img/favicon.png')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/admin.css')
+  body
+    .container
+        h3 Контролна кула
+        != messages
+        form(method='post', action='/sessions')
+          input.span5.first(type='text', name='user[username]', placeholder='Потребител')
+          input.span5(type='password', name='user[password]', placeholder='Парола')
+          input.btn.primary.clearfix(type='submit', value='Вход')

@@ -1,0 +1,8 @@
+- layout('admin/layout')
+- var category = category || {};
+
+.page-header
+  h1 Добавяне на категория
+  
+!= messages
+!= partial('_form', { category: category })

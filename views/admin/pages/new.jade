@@ -1,0 +1,8 @@
+- layout('admin/layout')
+- var page = page || {};
+
+.page-header
+  h1 Добавяне на страница
+
+!= messages
+!= partial('_form', { page: page })

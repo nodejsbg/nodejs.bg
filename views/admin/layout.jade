@@ -1,0 +1,33 @@
+!!!5
+html
+  head
+    base(href='/' + secret + '/')
+    title Контролна кула - nodejs.bg
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/admin.css')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js')
+    script(type='text/javascript', src='/js/libs/nicEdit.js')
+    script(type='text/javascript', src='/js/libs/jquery.slugit.js')
+    script(type='text/javascript', src='/js/app/admin.js')
+  body
+    .topbar
+      .fill
+        .container
+          a.brand(href='posts') Nodejs.bg - Контролна кула
+          ul.nav.clearfix
+            li!= link_to('Публикации', 'posts')
+            li!= link_to('Категории', 'categories')
+            li!= link_to('Страници', 'pages')
+            li!= link_to('Потребители', 'users')
+            li.logout
+              form(method='post', action='sessions')
+                input(type='hidden', value='delete', name='_method')
+                input(type='submit', value='Изход')
+    .container
+      .content
+        != body
+      footer
+        p 
+          | Nodejs.bg - Този проект е с 
+          a(href='https://github.com/nodejsbg/nodejs.bg') отворен код
+          | .

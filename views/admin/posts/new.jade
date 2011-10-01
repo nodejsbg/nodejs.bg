@@ -1,0 +1,8 @@
+- layout('admin/layout')
+- var post = post || {};
+
+.page-header
+  h1 Добавяне на публикация
+
+!= messages
+!= partial('_form', { post: post })
