@@ -48,6 +48,9 @@ This is the code repository for nodejs.bg
 There are many ways to contribute depending on your specific interests.
 The only thing you need is a desire to help improve the site.
 
+In order to keep the contributing as easy is possible we use the Vincent Driessen's [branching model](http://nvie.com/git-model).
+Please make sure you get familiar with [git-flow](https://github.com/nvie/gitflow).
+
 ## License
 
 (The MIT License)
