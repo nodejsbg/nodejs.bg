@@ -4,39 +4,39 @@ This is the code repository for nodejs.bg
 
 ## Getting Started
 
-1. Install and configure Node.js, NPM and MongoDB:
+Install and configure Node.js, NPM and MongoDB:
 
-	*	[Node.js](http://nodejs.org/)
-	*	[NPM](http://npmjs.org/)
-	*	[MongoDB](http://www.mongodb.org/)
+*	[Node.js](http://nodejs.org/)
+*	[NPM](http://npmjs.org/)
+*	[MongoDB](http://www.mongodb.org/)
 
-1.1 Optional libs:
+Optional:
 	
-	*	[nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
-	*	[NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
-	*	[Redis](http://redis.io/) - You can use Redis for persistent sessions storage.
+*	[nodemon](http://remy.github.com/nodemon/) - Automatically restart the server on any change.
+*	[NVM](https://github.com/creationix/nvm) - Simple bash script to manage multiple active Node.js versions.
+*	[Redis](http://redis.io/) - You can use Redis for persistent sessions storage.
 
-2. Get the code:
+Get the code:
 
 	$ git clone git@github.com:nodejsbg/nodejs.bg.git
 
-3. Install dependencies:
+Install dependencies:
 
 	$ npm install
   
-4. Rename config/config.example.js to config.js && rename config/db.example.js to db.js
+Rename config/config.example.js to config.js && rename config/db.example.js to db.js
 
-5. Change the session secret key in config/config.js.
+Change the session secret key in config/config.js.
 
-6. Update the database configurations (config/db.js).
+Update the database configurations (config/db.js).
 
-7. Fire up the server:
+Fire up the server:
 
 	$ node app.js
   
-8. Go to http://localhost:6969
+Go to http://localhost:6969
 
-9. Win!
+Win!
 
 ## TODO list
 
