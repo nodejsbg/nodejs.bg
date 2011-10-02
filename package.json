@@ -7,6 +7,7 @@
     , "jade": ">= 0.0.1"
     , "mongoose": ">= 2.1.4"
     , "should": ">=0.2.1"
+    , "commander": "0.2.0"
     , "express-helpers": ">=0.1.0"
   }
 }
