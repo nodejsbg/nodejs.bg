@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+/*!
+ * Nodejs.bg
+ * 
+ * Node.js Bulgarian User Group
+ * Copyright (c) 2011 Veselin Todorov <hi@vesln.com> & Martin Lazarov <martin@lazarov.bg>
+ * Licensed under the MIT License.
+ */
+ 
+var program = require('commander');
+var db = require('../config/db');
+var UriBuilder = require('../lib/uri_builder');
+var mongoose = require('mongoose');
+var uri = (new UriBuilder(db['development'])).toString();
+var User = User = require('../models/user'); // User Model.
+var defaults = {
+  username: 'admin',
+  passwd: '12345',
+};
+
+mongoose.connect(uri, function(err) {
+  if (err) {
+    console.error(err.message);
+    return process.exit(1);
+  }
+  
+  run();
+});
+
+function run() {
+  program
+    .option('-u, --username [username]', 'specify username (defaults to ' + defaults.username + ')')
+    .option('-p, --passwd [password]', 'specify password (defaults to ' + defaults.password + ')')
+    .parse(process.argv);
+  
+  var data = defaults;
+  
+  Object.keys(data).forEach(function(key) {
+    if (program[key]) data[key] = program[key];
+  });
+  
+  var user = new User(defaults);
+    user.save(function(err) {
+      if (err) {
+        console.error(err.message);
+        process.exit(1);
+      }
+    
+      console.log('Added.');
+      process.exit(1);
+  });
+}
