@@ -25,6 +25,14 @@ module.exports = {
   // Server configurations.
   server: {
     port: 6969
+  },
+  
+  i18n: {
+    // Supported locales.
+    locales: ['en', 'bg'],
+    
+    // Default locale.
+    locale: 'en'
   }
   
 };
