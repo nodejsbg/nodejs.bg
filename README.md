@@ -51,6 +51,7 @@ Win!
 * I18n
 * Test cases
 * Better environment handling
+* Errors
 
 ## Contributing
 
