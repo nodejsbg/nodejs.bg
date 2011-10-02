@@ -36,6 +36,12 @@ Fire up the server:
   
 Go to http://localhost:6969
 
+Admin panel: http://localhost:6969/admin
+
+To add new administrator:
+	$ cd bin/
+	$ ./nodejsbg -u username -p password
+
 Win!
 
 ## TODO list
