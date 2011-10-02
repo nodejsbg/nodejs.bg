@@ -78,7 +78,7 @@ User.pre('save', function(next) {
   }
   
   if (this.passwd.length < 5) {
-    return next(new Error('Паролата трябва да е поне 5 символа'));
+    return next(new Error(__('Password must be at least 5 characters long')));
   }
   
   this.password = this.hash(this.passwd);
