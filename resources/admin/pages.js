@@ -36,7 +36,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/pages/edit/:id', middlewares, function(req, res) {
     Page.findOne({ _id: req.params.id }, function(err, page) {
       if (err) {
-        req.flash('error', 'Страницата не беше намерена.');
+        req.flash('error', __('Something went wrong.'));
         return res.redirect('/' + app.config.admin.secret + '/pages');
       }
       res.render('admin/pages/edit', { page: page });
@@ -48,10 +48,10 @@ module.exports = function(app, middlewares) {
     var page = new Page(req.body.page);
     page.save(function(err) {
       if (err) {
-        req.flash('error', 'Не се получи! Опитай отново.');
+        req.flash('error', __('Something went wrong.'));
         return res.render('admin/pages/new', { page: req.body.page });
       }
-      req.flash('success', 'Страницата е добавена успешно.');
+      req.flash('success', __('The page was created successfully.'));
       res.redirect('/' + app.config.admin.secret + '/pages');
     });
   });
@@ -61,9 +61,9 @@ module.exports = function(app, middlewares) {
     Page.findById(req.params.id, function(err, page) {
       page.set(req.body.page).save(function(err) {
         if (err) {
-          req.flash('error', 'Не се получи! Опитай отново.');
+          req.flash('error', __('Something went wrong.'));
         } else {
-          req.flash('success', 'Страницата е запазена успешно.');
+          req.flash('success', __('The page was updated successfully.'));
         }
         res.redirect('/' + app.config.admin.secret + '/pages/edit/' + req.params.id);
       });
@@ -74,9 +74,9 @@ module.exports = function(app, middlewares) {
   app.del('/' + app.config.admin.secret + '/pages/:id', middlewares, function(req, res) {
     Page.remove({ _id: req.params.id }, function(err, count) {
       if (count) {
-        req.flash('success', 'Изтрих я.');
+        req.flash('success', __('The page has been permanently removed.'));
       } else {
-        req.flash('error', 'Не се получи! Опитай отново.');
+        req.flash('error', __('Something went wrong.'));
       }
       res.redirect('/' + app.config.admin.secret + '/pages');
     });
