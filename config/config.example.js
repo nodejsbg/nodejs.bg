@@ -27,6 +27,7 @@ module.exports = {
     port: 6969
   },
   
+  // I18n
   i18n: {
     // Supported locales.
     locales: ['en', 'bg'],
