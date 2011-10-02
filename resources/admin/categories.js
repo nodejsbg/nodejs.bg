@@ -36,7 +36,7 @@ module.exports = function(app, middlewares) {
   app.get('/' + app.config.admin.secret + '/categories/edit/:id', middlewares, function(req, res) {
     Category.findOne({ _id: req.params.id }, function(err, category) {
       if (err) {
-        req.flash('error', 'Категорията не беше намерена.');
+        req.flash('error', __('Something went wrong.'));
         return res.redirect('/' + app.config.admin.secret + '/categories');
       }
       res.render('admin/categories/edit', { category: category });
@@ -48,10 +48,10 @@ module.exports = function(app, middlewares) {
     var category = new Category(req.body.category);
     category.save(function(err) {
       if (err) {
-        req.flash('error', 'Не се получи! Опитай отново.');
+        req.flash('error', __('Something went wrong.'));
         return res.render('admin/categories/new', { category: req.body.category });
       }
-      req.flash('success', 'Категорията е добавена успешно.');
+      req.flash('success', __('The category was created successfully.'));
       res.redirect('/' + app.config.admin.secret + '/categories');
     });
   });
@@ -61,9 +61,9 @@ module.exports = function(app, middlewares) {
     Category.findById(req.params.id, function(err, category) {
       category.set(req.body.category).save(function(err) {
         if (err) {
-          req.flash('error', 'Не се получи! Опитай отново.');
+          req.flash('error', __('Something went wrong.'));
         } else {
-          req.flash('success', 'Категорията е запазена успешно.');
+          req.flash('success', __('The category was updated successfully.'));
         }
         res.redirect('/' + app.config.admin.secret + '/categories/edit/' + req.params.id);
       });
@@ -74,9 +74,9 @@ module.exports = function(app, middlewares) {
   app.del('/' + app.config.admin.secret + '/categories/:id', middlewares, function(req, res) {
     Category.remove({ _id: req.params.id }, function(err, count) {
       if (count) {
-        req.flash('success', 'Успешно изтриване.');
+        req.flash('success', __('The category has been permanently removed.'));
       } else {
-        req.flash('error', 'Не се получи! Опитай отново.');
+        req.flash('error', __('Something went wrong.'));
       }
       res.redirect('/' + app.config.admin.secret + '/categories');
     });
