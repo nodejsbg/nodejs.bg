@@ -19,6 +19,7 @@ module.exports = function(app, express) {
    * Module dependencies.
    */
   var path = require('path');
+  var i18n = require('i18n');
 
   // Root path.
   var root = path.dirname(__dirname);
@@ -54,6 +55,15 @@ module.exports = function(app, express) {
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(root + '/public'));
+  });
+  
+  // I18n.
+  i18n.configure({
+      // supported locales
+      locales: app.config.locales,
+      locale: app.config.locale,
+      // where to register __() and __n() to
+      register: global
   });
   
 };
