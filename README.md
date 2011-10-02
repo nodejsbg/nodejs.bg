@@ -35,10 +35,13 @@ Fire up the server:
 	$ node app.js
   
 Site: http://localhost:6969
+
 Admin: http://localhost:6969/admin/
 
-To add new administrator:
+To access the admin you should add an administrator:
+
 	$ cd bin/
+	
 	$ ./nodejsbg -u username -p password
 
 Win!
