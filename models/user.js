@@ -12,6 +12,7 @@
  */
 var crypto = require('crypto');
 var validator = require('../lib/validator');
+var mongoose = require('mongoose');
 
 /**
  * User Model.
@@ -81,7 +82,6 @@ User.pre('save', function(next) {
   }
   
   this.password = this.hash(this.passwd);
-  
   next();
 });
 
