@@ -13,7 +13,7 @@
 var express = require('express');
 var app = module.exports = express.createServer();
 var UriBuilder = require('./lib/uri_builder');
-global.mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 // Configurations.
 var config = app.config = require('./config/config');

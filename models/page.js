@@ -11,6 +11,7 @@
  * Module dependencies.
  */
 var validator = require('../lib/validator');
+var mongoose = require('mongoose');
 
 /**
  * Page Model.
