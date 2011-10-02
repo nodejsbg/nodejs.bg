@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+
+var program = require('commander');
+
+var user = 'admin';
+var pass = 'pass';
+
+program
+  .option('-u, --user [username]', 'specify username (defaults to ' + user + ')')
+  .option('-p, --pass [password]', 'specify password (defaults to ' + pass + ')')
+  .parse(process.argv);
+  
+if (program.user) {
+  user = program.user;
+}
+
+if (program.pass) {
+  pass = program.pass;
+}
