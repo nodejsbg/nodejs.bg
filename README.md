@@ -34,9 +34,8 @@ Fire up the server:
 
 	$ node app.js
   
-Go to http://localhost:6969
-
-Admin panel: http://localhost:6969/admin
+Site: http://localhost:6969
+Admin: http://localhost:6969/admin/
 
 To add new administrator:
 	$ cd bin/
