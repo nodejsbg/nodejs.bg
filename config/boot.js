@@ -59,11 +59,11 @@ module.exports = function(app, express) {
   
   // I18n.
   i18n.configure({
-      // supported locales
-      locales: app.config.locales,
-      locale: app.config.locale,
-      // where to register __() and __n() to
-      register: global
+    // supported locales
+    locales: app.config.locales,
+    locale: app.config.locale,
+    // where to register __() and __n() to
+    register: global
   });
   
 };
