@@ -24,11 +24,8 @@ var db = require('./config/db');
 require('./config/boot.js')(app, express);
 
 // Database connection.
-mongoose.connect((new UriBuilder(db[app.settings.env])).toString(),function (err){
-  if(err){
-    throw err;
-  }
-
+mongoose.connect((new UriBuilder(db[app.settings.env])).toString(), function (err) {
+  if (err) throw err;
 });
 
 // Helpers.
